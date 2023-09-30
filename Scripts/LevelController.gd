@@ -4,11 +4,15 @@ extends Node2D
 
 @onready var hud := $HUD
 @onready var goal = $Environment/Goal
+@onready var scoreText:Label = $HUD/HUDControl/Score
 
 # Called when the node enters the scene tree for the first time.
 func _ready() -> void:
 	player.connect("health_changed", player_health_changed)
 	goal.connect("player_reached_goal", player_reached_end)
+
+	scoreText.text = str(Globals.score).pad_zeros(3)
+
 
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.

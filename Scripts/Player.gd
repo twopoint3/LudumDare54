@@ -20,6 +20,7 @@ var direction: float
 var currect_health = max_health :
 	set (value):
 		currect_health = value
+		Globals.player_health = currect_health
 		emit_signal("health_changed")
 	get: 
 		return currect_health
