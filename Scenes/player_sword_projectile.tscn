@@ -1,0 +1,25 @@
+[gd_scene load_steps=4 format=3 uid="uid://bpxqtmwtkyd35"]
+
+[ext_resource type="Script" path="res://Scripts/SwordProjectile.gd" id="1_gknyb"]
+[ext_resource type="Texture2D" uid="uid://biih7mb171tgy" path="res://Sprites/Player/SwordProjectile.png" id="2_04qkm"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_vs8he"]
+size = Vector2(14, 12)
+
+[node name="SwordProjectile" type="Area2D"]
+collision_layer = 2
+collision_mask = 16
+script = ExtResource("1_gknyb")
+metadata/_edit_group_ = true
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+position = Vector2(8, 10)
+shape = SubResource("RectangleShape2D_vs8he")
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+texture = ExtResource("2_04qkm")
+centered = false
+
+[node name="VisibleOnScreenEnabler2D" type="VisibleOnScreenEnabler2D" parent="."]
+position = Vector2(8, 8)
+scale = Vector2(0.8, 0.8)
