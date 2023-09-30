@@ -1,4 +1,4 @@
-[gd_scene load_steps=36 format=3 uid="uid://bckf4x1g847vb"]
+[gd_scene load_steps=32 format=3 uid="uid://bckf4x1g847vb"]
 
 [ext_resource type="Script" path="res://Scripts/LevelController.gd" id="1_cuv5v"]
 [ext_resource type="Script" path="res://Scripts/HUD.gd" id="2_c55ex"]
@@ -7,13 +7,12 @@
 [ext_resource type="Texture2D" uid="uid://bt7pvi5tdrmk6" path="res://Sprites/HUD/health_border.png" id="3_y3noy"]
 [ext_resource type="Script" path="res://Scripts/Player.gd" id="3_y25dv"]
 [ext_resource type="Texture2D" uid="uid://dwhsir4uc7ysy" path="res://Sprites/HUD/health_bar.png" id="4_lp8ry"]
-[ext_resource type="Script" path="res://Scripts/BasicEnemy.gd" id="5_43mqb"]
 [ext_resource type="Texture2D" uid="uid://cky8npqenx1mr" path="res://Sprites/Tiles/level1_tileset.png" id="5_fir7e"]
-[ext_resource type="Script" path="res://Scripts/EnemyHitbox.gd" id="6_1mmu2"]
 [ext_resource type="Script" path="res://Scenes/SwordHitBox.gd" id="8_bq6wo"]
 [ext_resource type="Texture2D" uid="uid://5jw7xpb0u1h" path="res://Sprites/Player/Sword.png" id="9_ub26g"]
 [ext_resource type="Script" path="res://Scripts/Lava.gd" id="11_10glm"]
 [ext_resource type="PackedScene" uid="uid://bpxqtmwtkyd35" path="res://Scenes/player_sword_projectile.tscn" id="11_72cgu"]
+[ext_resource type="PackedScene" uid="uid://bkyb57xxntmyw" path="res://Scenes/b_enemy.tscn" id="11_vjqp6"]
 [ext_resource type="Script" path="res://Scripts/BasicProjectile.gd" id="12_3sb77"]
 [ext_resource type="Texture2D" uid="uid://n73jg05xopmp" path="res://Sprites/Projectiles/Arrow.png" id="12_q3xk2"]
 [ext_resource type="Texture2D" uid="uid://duc46aujvb1j" path="res://Sprites/Tiles/Wall.png" id="13_yp54u"]
@@ -158,15 +157,6 @@ _data = {
 "SwordAttack": SubResource("Animation_nqqm5")
 }
 
-[sub_resource type="RectangleShape2D" id="RectangleShape2D_swmbf"]
-size = Vector2(16, 16)
-
-[sub_resource type="RectangleShape2D" id="RectangleShape2D_wc4pp"]
-size = Vector2(16, 16)
-
-[sub_resource type="RectangleShape2D" id="RectangleShape2D_8xaaf"]
-size = Vector2(16, 16)
-
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_y3bl1"]
 size = Vector2(14, 14)
 
@@ -282,97 +272,14 @@ libraries = {
 
 [node name="Enemies" type="Node2D" parent="Environment"]
 
-[node name="bEnemy" type="CharacterBody2D" parent="Environment/Enemies"]
-position = Vector2(144, -32)
-script = ExtResource("5_43mqb")
-metadata/_edit_group_ = true
+[node name="bEnemy" parent="Environment/Enemies" instance=ExtResource("11_vjqp6")]
+position = Vector2(96, 0)
 
-[node name="CollisionShape2D" type="CollisionShape2D" parent="Environment/Enemies/bEnemy"]
-visible = false
-position = Vector2(8, 8)
-shape = SubResource("RectangleShape2D_swmbf")
+[node name="bEnemy2" parent="Environment/Enemies" instance=ExtResource("11_vjqp6")]
+position = Vector2(96, -64)
 
-[node name="Sprite2D" type="Sprite2D" parent="Environment/Enemies/bEnemy"]
-modulate = Color(1, 0.0588235, 0, 1)
-texture = ExtResource("3_nasgk")
-centered = false
-
-[node name="HurtBox" type="Area2D" parent="Environment/Enemies/bEnemy"]
-collision_layer = 16
-collision_mask = 2
-
-[node name="CollisionShape2D" type="CollisionShape2D" parent="Environment/Enemies/bEnemy/HurtBox"]
-position = Vector2(8, 8)
-shape = SubResource("RectangleShape2D_wc4pp")
-debug_color = Color(0.690196, 0.701961, 0, 0.419608)
-
-[node name="HitBox" type="Area2D" parent="Environment/Enemies/bEnemy"]
-collision_layer = 8
-collision_mask = 4
-script = ExtResource("6_1mmu2")
-
-[node name="CollisionShape2D" type="CollisionShape2D" parent="Environment/Enemies/bEnemy/HitBox"]
-position = Vector2(8, 8)
-shape = SubResource("RectangleShape2D_8xaaf")
-debug_color = Color(0.701961, 0, 0.0117647, 0.419608)
-
-[node name="CollisionRay" type="RayCast2D" parent="Environment/Enemies/bEnemy"]
-position = Vector2(8, 8)
-target_position = Vector2(-16, 0)
-
-[node name="VisibleOnScreenEnabler2D" type="VisibleOnScreenEnabler2D" parent="Environment/Enemies/bEnemy"]
-position = Vector2(8, 8)
-scale = Vector2(0.9, 0.9)
-
-[node name="MovementChanceTimer" type="Timer" parent="Environment/Enemies/bEnemy"]
-wait_time = 1.8
-autostart = true
-
-[node name="bEnemy5" type="CharacterBody2D" parent="Environment/Enemies"]
-position = Vector2(144, -240)
-script = ExtResource("5_43mqb")
-metadata/_edit_group_ = true
-
-[node name="CollisionShape2D" type="CollisionShape2D" parent="Environment/Enemies/bEnemy5"]
-visible = false
-position = Vector2(8, 8)
-shape = SubResource("RectangleShape2D_swmbf")
-
-[node name="Sprite2D" type="Sprite2D" parent="Environment/Enemies/bEnemy5"]
-modulate = Color(1, 0.0588235, 0, 1)
-texture = ExtResource("3_nasgk")
-centered = false
-
-[node name="HurtBox" type="Area2D" parent="Environment/Enemies/bEnemy5"]
-collision_layer = 16
-collision_mask = 2
-
-[node name="CollisionShape2D" type="CollisionShape2D" parent="Environment/Enemies/bEnemy5/HurtBox"]
-position = Vector2(8, 8)
-shape = SubResource("RectangleShape2D_wc4pp")
-debug_color = Color(0.690196, 0.701961, 0, 0.419608)
-
-[node name="HitBox" type="Area2D" parent="Environment/Enemies/bEnemy5"]
-collision_layer = 8
-collision_mask = 4
-script = ExtResource("6_1mmu2")
-
-[node name="CollisionShape2D" type="CollisionShape2D" parent="Environment/Enemies/bEnemy5/HitBox"]
-position = Vector2(8, 8)
-shape = SubResource("RectangleShape2D_8xaaf")
-debug_color = Color(0.701961, 0, 0.0117647, 0.419608)
-
-[node name="CollisionRay" type="RayCast2D" parent="Environment/Enemies/bEnemy5"]
-position = Vector2(8, 8)
-target_position = Vector2(-16, 0)
-
-[node name="VisibleOnScreenEnabler2D" type="VisibleOnScreenEnabler2D" parent="Environment/Enemies/bEnemy5"]
-position = Vector2(8, 8)
-scale = Vector2(0.9, 0.9)
-
-[node name="MovementChanceTimer" type="Timer" parent="Environment/Enemies/bEnemy5"]
-wait_time = 1.8
-autostart = true
+[node name="bEnemy3" parent="Environment/Enemies" instance=ExtResource("11_vjqp6")]
+position = Vector2(112, -64)
 
 [node name="Obstacles" type="Node2D" parent="Environment"]
 
@@ -871,8 +778,4 @@ debug_color = Color(0, 0.701961, 0.0431373, 0.419608)
 metadata/_edit_group_ = true
 
 [connection signal="area_entered" from="Environment/Camera2D/Player/HurtBox" to="Environment/Camera2D/Player" method="_on_hurtbox_area_entered"]
-[connection signal="area_entered" from="Environment/Enemies/bEnemy/HurtBox" to="Environment/Enemies/bEnemy" method="_on_hurtbox_area_entered"]
-[connection signal="timeout" from="Environment/Enemies/bEnemy/MovementChanceTimer" to="Environment/Enemies/bEnemy" method="_on_movement_chance_timer_timeout"]
-[connection signal="area_entered" from="Environment/Enemies/bEnemy5/HurtBox" to="Environment/Enemies/bEnemy5" method="_on_hurtbox_area_entered"]
-[connection signal="timeout" from="Environment/Enemies/bEnemy5/MovementChanceTimer" to="Environment/Enemies/bEnemy5" method="_on_movement_chance_timer_timeout"]
 [connection signal="area_entered" from="Environment/Goal" to="Environment/Goal" method="_on_area_entered"]

@@ -1,0 +1,67 @@
+[gd_scene load_steps=7 format=3 uid="uid://bkyb57xxntmyw"]
+
+[ext_resource type="Script" path="res://Scripts/BasicEnemy.gd" id="1_sc3dj"]
+[ext_resource type="Texture2D" uid="uid://dsy7uv586empa" path="res://Sprites/Enemies/Enemies.png" id="2_s0c1f"]
+[ext_resource type="Script" path="res://Scripts/EnemyHitbox.gd" id="3_jw411"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_swmbf"]
+size = Vector2(16, 16)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_wc4pp"]
+size = Vector2(16, 16)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_8xaaf"]
+size = Vector2(16, 16)
+
+[node name="bEnemy" type="CharacterBody2D"]
+script = ExtResource("1_sc3dj")
+metadata/_edit_group_ = true
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+visible = false
+position = Vector2(8, 8)
+shape = SubResource("RectangleShape2D_swmbf")
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+modulate = Color(1, 0.0588235, 0, 1)
+texture = ExtResource("2_s0c1f")
+centered = false
+hframes = 4
+frame = 1
+
+[node name="HurtBox" type="Area2D" parent="."]
+visible = false
+collision_layer = 16
+collision_mask = 2
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="HurtBox"]
+position = Vector2(8, 8)
+shape = SubResource("RectangleShape2D_wc4pp")
+debug_color = Color(0.690196, 0.701961, 0, 0.419608)
+
+[node name="HitBox" type="Area2D" parent="."]
+visible = false
+collision_layer = 8
+collision_mask = 4
+script = ExtResource("3_jw411")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="HitBox"]
+position = Vector2(8, 8)
+shape = SubResource("RectangleShape2D_8xaaf")
+debug_color = Color(0.701961, 0, 0.0117647, 0.419608)
+
+[node name="CollisionRay" type="RayCast2D" parent="."]
+position = Vector2(8, 8)
+target_position = Vector2(-16, 0)
+
+[node name="VisibleOnScreenEnabler2D" type="VisibleOnScreenEnabler2D" parent="."]
+visible = false
+position = Vector2(8, 8)
+scale = Vector2(0.9, 0.9)
+
+[node name="MovementChanceTimer" type="Timer" parent="."]
+wait_time = 1.8
+autostart = true
+
+[connection signal="area_entered" from="HurtBox" to="." method="_on_hurtbox_area_entered"]
+[connection signal="timeout" from="MovementChanceTimer" to="." method="_on_movement_chance_timer_timeout"]
