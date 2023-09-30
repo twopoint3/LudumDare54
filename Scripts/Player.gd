@@ -59,12 +59,22 @@ func can_move():
 		return true
 
 func _on_hurtbox_area_entered(area: Area2D) -> void:
-	take_damage(area.damage)
+	var layer = area.collision_layer
+	match layer:
+		4: #enemy
+			take_damage(area.damage)
+		32:	#Pitfall
+			print("hit pit fall")
+		
+	
+	
+	
 
 func take_damage(damage_amount):
 	currect_health -= damage_amount
 
 func spawn_sword_projectile():
+	animation_player.stop()
 	var new_projectile = sword_projectile.instantiate()
-	new_projectile.global_position = sword.global_position
+	new_projectile.global_position = sword.global_position - Vector2(0, 16)
 	owner.add_child(new_projectile)

@@ -1,4 +1,4 @@
-[gd_scene load_steps=34 format=3 uid="uid://bckf4x1g847vb"]
+[gd_scene load_steps=36 format=3 uid="uid://bckf4x1g847vb"]
 
 [ext_resource type="Script" path="res://Scripts/LevelController.gd" id="1_cuv5v"]
 [ext_resource type="Texture2D" uid="uid://bflqtoe83jmkl" path="res://Sprites/HUD/HealthBarOver.png" id="1_dhcro"]
@@ -10,6 +10,7 @@
 [ext_resource type="Script" path="res://Scripts/Player.gd" id="3_y25dv"]
 [ext_resource type="Script" path="res://Scripts/BasicEnemy.gd" id="5_43mqb"]
 [ext_resource type="Script" path="res://Scripts/EnemyHitbox.gd" id="6_1mmu2"]
+[ext_resource type="Script" path="res://Scenes/SwordHitBox.gd" id="8_bq6wo"]
 [ext_resource type="Texture2D" uid="uid://5jw7xpb0u1h" path="res://Sprites/Player/Sword.png" id="9_ub26g"]
 [ext_resource type="Script" path="res://Scripts/Lava.gd" id="11_10glm"]
 [ext_resource type="PackedScene" uid="uid://bpxqtmwtkyd35" path="res://Scenes/player_sword_projectile.tscn" id="11_72cgu"]
@@ -115,6 +116,9 @@ size = Vector2(14, 14)
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_8rqyc"]
 size = Vector2(14, 14)
 
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_0ud8w"]
+size = Vector2(32, 32)
+
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_kwvth"]
 size = Vector2(14, 13)
 
@@ -146,6 +150,16 @@ value = 5.0
 texture_over = ExtResource("1_dhcro")
 texture_progress = ExtResource("1_h3vq6")
 
+[node name="Label" type="Label" parent="HUD/HUDControl"]
+layout_mode = 0
+offset_left = 19.0
+offset_top = 20.0
+offset_right = 51.0
+offset_bottom = 46.0
+text = "000"
+horizontal_alignment = 1
+vertical_alignment = 1
+
 [node name="Environment" type="Node2D" parent="."]
 
 [node name="TileMap" type="TileMap" parent="Environment"]
@@ -164,11 +178,14 @@ target = NodePath("Player")
 [node name="Player" type="CharacterBody2D" parent="Environment/Camera2D" groups=["Player"]]
 position = Vector2(-16, 56)
 script = ExtResource("3_y25dv")
+movement_speed = 0.25
+wait_before_move = 0.03
 metadata/_edit_group_ = true
 
 [node name="SwordHitBox" type="Area2D" parent="Environment/Camera2D/Player"]
 collision_layer = 2
 collision_mask = 16
+script = ExtResource("8_bq6wo")
 
 [node name="Sprite2D" type="Sprite2D" parent="Environment/Camera2D/Player/SwordHitBox"]
 texture = ExtResource("9_ub26g")
@@ -193,7 +210,7 @@ target_position = Vector2(-16, 0)
 
 [node name="HurtBox" type="Area2D" parent="Environment/Camera2D/Player"]
 collision_layer = 4
-collision_mask = 8
+collision_mask = 40
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Environment/Camera2D/Player/HurtBox"]
 position = Vector2(8, 8)
@@ -253,6 +270,52 @@ scale = Vector2(0.9, 0.9)
 wait_time = 1.8
 autostart = true
 
+[node name="bEnemy5" type="CharacterBody2D" parent="Environment/Enemies"]
+position = Vector2(96, -192)
+script = ExtResource("5_43mqb")
+metadata/_edit_group_ = true
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Environment/Enemies/bEnemy5"]
+visible = false
+position = Vector2(8, 8)
+shape = SubResource("RectangleShape2D_swmbf")
+
+[node name="Sprite2D" type="Sprite2D" parent="Environment/Enemies/bEnemy5"]
+modulate = Color(1, 0.0588235, 0, 1)
+texture = ExtResource("3_nasgk")
+centered = false
+
+[node name="HurtBox" type="Area2D" parent="Environment/Enemies/bEnemy5"]
+collision_layer = 16
+collision_mask = 2
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Environment/Enemies/bEnemy5/HurtBox"]
+position = Vector2(8, 8)
+shape = SubResource("RectangleShape2D_wc4pp")
+debug_color = Color(0.690196, 0.701961, 0, 0.419608)
+
+[node name="HitBox" type="Area2D" parent="Environment/Enemies/bEnemy5"]
+collision_layer = 8
+collision_mask = 4
+script = ExtResource("6_1mmu2")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Environment/Enemies/bEnemy5/HitBox"]
+position = Vector2(8, 8)
+shape = SubResource("RectangleShape2D_8xaaf")
+debug_color = Color(0.701961, 0, 0.0117647, 0.419608)
+
+[node name="CollisionRay" type="RayCast2D" parent="Environment/Enemies/bEnemy5"]
+position = Vector2(8, 8)
+target_position = Vector2(-16, 0)
+
+[node name="VisibleOnScreenEnabler2D" type="VisibleOnScreenEnabler2D" parent="Environment/Enemies/bEnemy5"]
+position = Vector2(8, 8)
+scale = Vector2(0.9, 0.9)
+
+[node name="MovementChanceTimer" type="Timer" parent="Environment/Enemies/bEnemy5"]
+wait_time = 1.8
+autostart = true
+
 [node name="Obstacles" type="Node2D" parent="Environment"]
 
 [node name="Lava" type="Area2D" parent="Environment/Obstacles"]
@@ -287,15 +350,25 @@ position = Vector2(8, 8)
 shape = SubResource("RectangleShape2D_8rqyc")
 debug_color = Color(0.701961, 0, 0.0117647, 0.419608)
 
+[node name="Pitfall" type="Area2D" parent="Environment/Obstacles"]
+position = Vector2(96, -32)
+collision_layer = 32
+collision_mask = 4
+metadata/_edit_group_ = true
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Environment/Obstacles/Pitfall"]
+position = Vector2(16, 16)
+shape = SubResource("RectangleShape2D_0ud8w")
+
 [node name="SwordProjectile" parent="Environment" instance=ExtResource("11_72cgu")]
 position = Vector2(-32, 16)
 
 [node name="EnemyArrowProjectile" type="Area2D" parent="Environment"]
-position = Vector2(112, -16)
+position = Vector2(144, -128)
 collision_layer = 8
 collision_mask = 4
 script = ExtResource("12_3sb77")
-speed = 80
+speed = 90
 direction = Vector2(0, 1)
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Environment/EnemyArrowProjectile"]
@@ -305,6 +378,30 @@ shape = SubResource("RectangleShape2D_kwvth")
 [node name="Sprite2D" type="Sprite2D" parent="Environment/EnemyArrowProjectile"]
 texture = ExtResource("12_q3xk2")
 centered = false
+
+[node name="VisibleOnScreenEnabler2D" type="VisibleOnScreenEnabler2D" parent="Environment/EnemyArrowProjectile"]
+position = Vector2(8, 10)
+scale = Vector2(0.8, 1)
+
+[node name="EnemyArrowProjectile3" type="Area2D" parent="Environment"]
+position = Vector2(96, -128)
+collision_layer = 8
+collision_mask = 4
+script = ExtResource("12_3sb77")
+speed = 80
+direction = Vector2(0, 1)
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Environment/EnemyArrowProjectile3"]
+position = Vector2(8, 6.5)
+shape = SubResource("RectangleShape2D_kwvth")
+
+[node name="Sprite2D" type="Sprite2D" parent="Environment/EnemyArrowProjectile3"]
+texture = ExtResource("12_q3xk2")
+centered = false
+
+[node name="VisibleOnScreenEnabler2D" type="VisibleOnScreenEnabler2D" parent="Environment/EnemyArrowProjectile3"]
+position = Vector2(8, 10)
+scale = Vector2(0.8, 1)
 
 [node name="Goal" type="Area2D" parent="Environment"]
 position = Vector2(0, -400)
@@ -321,4 +418,6 @@ metadata/_edit_group_ = true
 [connection signal="area_entered" from="Environment/Camera2D/Player/HurtBox" to="Environment/Camera2D/Player" method="_on_hurtbox_area_entered"]
 [connection signal="area_entered" from="Environment/Enemies/bEnemy/HurtBox" to="Environment/Enemies/bEnemy" method="_on_hurtbox_area_entered"]
 [connection signal="timeout" from="Environment/Enemies/bEnemy/MovementChanceTimer" to="Environment/Enemies/bEnemy" method="_on_movement_chance_timer_timeout"]
+[connection signal="area_entered" from="Environment/Enemies/bEnemy5/HurtBox" to="Environment/Enemies/bEnemy5" method="_on_hurtbox_area_entered"]
+[connection signal="timeout" from="Environment/Enemies/bEnemy5/MovementChanceTimer" to="Environment/Enemies/bEnemy5" method="_on_movement_chance_timer_timeout"]
 [connection signal="area_entered" from="Environment/Goal" to="Environment/Goal" method="_on_area_entered"]

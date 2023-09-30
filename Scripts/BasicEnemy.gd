@@ -17,6 +17,8 @@ var target_position = Vector2.ZERO
 
 func _ready() -> void:
 	area_hitbox.damage = damage
+	if can_move == false:
+		movement_timer.stop()
 
 func take_damage(damage_amount):
 	currect_health -= damage_amount
