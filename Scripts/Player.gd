@@ -63,7 +63,7 @@ func _on_hurtbox_area_entered(area: Area2D) -> void:
 	var layer = area.collision_layer
 	print(layer)
 	match layer:
-		4: #enemy
+		8: #enemy
 			take_damage(area.damage)
 		32:	#Pitfall
 			print("hit pit fall")
