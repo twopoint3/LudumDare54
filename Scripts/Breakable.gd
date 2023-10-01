@@ -4,12 +4,12 @@ extends Area2D
 @export var item_dropped:Array[PackedScene] = []
 @export var drop_chance = 1
 
+@onready var animation_player = $AnimationPlayer
+
 func _on_area_entered(area:Area2D) -> void:
 	health -= area.damage
 
 	if health <= 0:
-		if chance():
-			drop_item()
 		death()
 func drop_item():
 	if item_dropped.size() <= 1:
@@ -28,7 +28,11 @@ func chance():
 		return false
 
 func death():
-	queue_free()
+	animation_player.play("Death")
+	await animation_player.animation_finished
+	if chance():
+		drop_item()
+	call_deferred("queue_free")
 func spawn_item(item):
 	var new_item = item.instantiate()
 	new_item.global_position = global_position

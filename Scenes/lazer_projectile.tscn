@@ -1,69 +1,26 @@
-[gd_scene load_steps=7 format=3 uid="uid://3jo61mhc6gpi"]
+[gd_scene load_steps=11 format=3 uid="uid://3jo61mhc6gpi"]
 
 [ext_resource type="Script" path="res://Scripts/lazer_projectile.gd" id="1_mhpx2"]
-[ext_resource type="Texture2D" uid="uid://cuku4qrrjafii" path="res://Sprites/Projectiles/LazerProjectile.png" id="2_sy28q"]
+[ext_resource type="Texture2D" uid="uid://b1d3nj0lgtllc" path="res://Sprites/Projectiles/beam.png" id="2_uetfj"]
+[ext_resource type="Texture2D" uid="uid://togo7ewvyo45" path="res://Sprites/Projectiles/beam_charge.png" id="3_2cjnb"]
+[ext_resource type="Shader" path="res://lazer_projectile.gdshader" id="4_8dlpp"]
+[ext_resource type="Texture2D" uid="uid://csfj5wbsuw48h" path="res://Sprites/Projectiles/ball.png" id="4_ouft2"]
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_iy1be"]
+shader = ExtResource("4_8dlpp")
+shader_parameter/motion = Vector2(0, -64)
+shader_parameter/scale = 1.0
+shader_parameter/offset = Vector2(0, 0)
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_vs8he"]
 size = Vector2(10, 14.875)
-
-[sub_resource type="Animation" id="Animation_k1bh8"]
-resource_name = "Start"
-length = 1.5
-tracks/0/type = "value"
-tracks/0/imported = false
-tracks/0/enabled = true
-tracks/0/path = NodePath("Sprite2D:region_rect")
-tracks/0/interp = 1
-tracks/0/loop_wrap = true
-tracks/0/keys = {
-"times": PackedFloat32Array(0, 1.5),
-"transitions": PackedFloat32Array(1, 1),
-"update": 0,
-"values": [Rect2(0, 0, 16, 0), Rect2(0, 0, 16, 144)]
-}
-tracks/1/type = "value"
-tracks/1/imported = false
-tracks/1/enabled = true
-tracks/1/path = NodePath("CollisionShape2D:scale")
-tracks/1/interp = 1
-tracks/1/loop_wrap = true
-tracks/1/keys = {
-"times": PackedFloat32Array(0, 1.4),
-"transitions": PackedFloat32Array(1, 1),
-"update": 0,
-"values": [Vector2(1, 0), Vector2(1, 9)]
-}
-tracks/2/type = "value"
-tracks/2/imported = false
-tracks/2/enabled = true
-tracks/2/path = NodePath("CollisionShape2D:disabled")
-tracks/2/interp = 1
-tracks/2/loop_wrap = true
-tracks/2/keys = {
-"times": PackedFloat32Array(0, 0.1, 1.5),
-"transitions": PackedFloat32Array(1, 1, 1),
-"update": 1,
-"values": [true, false, false]
-}
-tracks/3/type = "value"
-tracks/3/imported = false
-tracks/3/enabled = true
-tracks/3/path = NodePath("CollisionShape2D:position")
-tracks/3/interp = 1
-tracks/3/loop_wrap = true
-tracks/3/keys = {
-"times": PackedFloat32Array(0, 1.4),
-"transitions": PackedFloat32Array(1, 1),
-"update": 0,
-"values": [Vector2(8, 0), Vector2(8, -64)]
-}
 
 [sub_resource type="Animation" id="Animation_qvic3"]
 length = 0.001
 tracks/0/type = "value"
 tracks/0/imported = false
 tracks/0/enabled = true
-tracks/0/path = NodePath("Sprite2D:region_rect")
+tracks/0/path = NodePath("beam:region_rect")
 tracks/0/interp = 1
 tracks/0/loop_wrap = true
 tracks/0/keys = {
@@ -108,6 +65,129 @@ tracks/3/keys = {
 "update": 0,
 "values": [Vector2(8, 0)]
 }
+tracks/4/type = "value"
+tracks/4/imported = false
+tracks/4/enabled = true
+tracks/4/path = NodePath("charge:frame_coords")
+tracks/4/interp = 1
+tracks/4/loop_wrap = true
+tracks/4/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [Vector2i(0, 0)]
+}
+tracks/5/type = "value"
+tracks/5/imported = false
+tracks/5/enabled = true
+tracks/5/path = NodePath("Sprite2D2:visible")
+tracks/5/interp = 1
+tracks/5/loop_wrap = true
+tracks/5/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [false]
+}
+tracks/6/type = "value"
+tracks/6/imported = false
+tracks/6/enabled = true
+tracks/6/path = NodePath("Sprite2D2:position")
+tracks/6/interp = 1
+tracks/6/loop_wrap = true
+tracks/6/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector2(16, -16)]
+}
+
+[sub_resource type="Animation" id="Animation_k1bh8"]
+resource_name = "Start"
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("beam:region_rect")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0.3, 0.7),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [Rect2(0, 0, 16, 0), Rect2(0, 0, 16, 80)]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("CollisionShape2D:scale")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0.3, 0.6),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [Vector2(1, 0), Vector2(1, 6)]
+}
+tracks/2/type = "value"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath("CollisionShape2D:disabled")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(0.3, 0.4, 0.7),
+"transitions": PackedFloat32Array(1, 1, 1),
+"update": 1,
+"values": [true, false, false]
+}
+tracks/3/type = "value"
+tracks/3/imported = false
+tracks/3/enabled = true
+tracks/3/path = NodePath("CollisionShape2D:position")
+tracks/3/interp = 1
+tracks/3/loop_wrap = true
+tracks/3/keys = {
+"times": PackedFloat32Array(0.3, 0.9),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [Vector2(8, 0), Vector2(8, -48)]
+}
+tracks/4/type = "value"
+tracks/4/imported = false
+tracks/4/enabled = true
+tracks/4/path = NodePath("charge:frame_coords")
+tracks/4/interp = 1
+tracks/4/loop_wrap = true
+tracks/4/keys = {
+"times": PackedFloat32Array(0, 0.1, 0.2, 0.3),
+"transitions": PackedFloat32Array(1, 1, 1, 1),
+"update": 1,
+"values": [Vector2i(0, 0), Vector2i(1, 0), Vector2i(2, 0), Vector2i(3, 0)]
+}
+tracks/5/type = "value"
+tracks/5/imported = false
+tracks/5/enabled = true
+tracks/5/path = NodePath("Sprite2D2:visible")
+tracks/5/interp = 1
+tracks/5/loop_wrap = true
+tracks/5/keys = {
+"times": PackedFloat32Array(0, 0.25, 0.3, 0.7),
+"transitions": PackedFloat32Array(1, 1, 1, 1),
+"update": 1,
+"values": [false, false, true, true]
+}
+tracks/6/type = "value"
+tracks/6/imported = false
+tracks/6/enabled = true
+tracks/6/path = NodePath("Sprite2D2:position")
+tracks/6/interp = 1
+tracks/6/loop_wrap = true
+tracks/6/keys = {
+"times": PackedFloat32Array(0.25, 0.35, 0.7),
+"transitions": PackedFloat32Array(1, 1, 1),
+"update": 0,
+"values": [Vector2(16, 0), Vector2(16, -16), Vector2(16, -92)]
+}
 
 [sub_resource type="AnimationLibrary" id="AnimationLibrary_0x7fp"]
 _data = {
@@ -123,12 +203,14 @@ speed = 0
 pierce = true
 direction = Vector2(0, 0)
 
-[node name="Sprite2D" type="Sprite2D" parent="."]
+[node name="beam" type="Sprite2D" parent="."]
+z_index = 1
 texture_filter = 1
 texture_repeat = 2
+material = SubResource("ShaderMaterial_iy1be")
 position = Vector2(16, 0)
 rotation = 3.14159
-texture = ExtResource("2_sy28q")
+texture = ExtResource("2_uetfj")
 centered = false
 region_enabled = true
 region_rect = Rect2(0, 0, 16, 0)
@@ -143,3 +225,21 @@ autoplay = "Start"
 libraries = {
 "": SubResource("AnimationLibrary_0x7fp")
 }
+
+[node name="charge" type="Sprite2D" parent="."]
+position = Vector2(0, -16)
+texture = ExtResource("3_2cjnb")
+centered = false
+offset = Vector2(0, 4.405)
+hframes = 4
+
+[node name="Sprite2D2" type="Sprite2D" parent="."]
+visible = false
+z_index = 1
+position = Vector2(16, -16)
+texture = ExtResource("4_ouft2")
+centered = false
+offset = Vector2(-16, 0)
+flip_v = true
+region_enabled = true
+region_rect = Rect2(0, 0, 16, 16)

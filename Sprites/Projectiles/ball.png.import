@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://cuku4qrrjafii"
-path="res://.godot/imported/LazerProjectile.png-8f025a24c2f410be8cce225e62f91867.ctex"
+uid="uid://csfj5wbsuw48h"
+path="res://.godot/imported/ball.png-b9cbfd47e906594910e3658e275637ea.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://Sprites/Projectiles/LazerProjectile.png"
-dest_files=["res://.godot/imported/LazerProjectile.png-8f025a24c2f410be8cce225e62f91867.ctex"]
+source_file="res://Sprites/Projectiles/ball.png"
+dest_files=["res://.godot/imported/ball.png-b9cbfd47e906594910e3658e275637ea.ctex"]
 
 [params]
 

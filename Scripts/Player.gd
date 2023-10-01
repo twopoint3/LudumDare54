@@ -76,14 +76,15 @@ func lazer_state():
 	if input_direction != Vector2.ZERO and !is_moving:
 		move()
 	if new_lazer != null:
+		Utilities.shake_camera(1)
 		return
 	new_lazer = lazer_projectile.instantiate()
 	add_child(new_lazer)
 	await get_tree().physics_frame
-	new_lazer.global_position = global_position
+	new_lazer.global_position = global_position + Vector2(0, -1)
 	await get_tree().create_timer(lazer_time).timeout
-	new_lazer.sword_animation_player.play_backwards("Start")
-	await new_lazer.sword_animation_player.animation_finished
+	new_lazer.animation_player.play_backwards("Start")
+	await new_lazer.animation_player.animation_finished
 	new_lazer.queue_free()
 	currect_state = states.NORMAL
 func get_inputs():
@@ -143,6 +144,7 @@ func animation():
 	pass
 
 func spawn_sword_projectile():
+	Utilities.shake_camera(0.3)
 	sword_animation_player.stop()
 	var new_projectile = sword_projectile.instantiate()
 	new_projectile.global_position = sword.global_position - Vector2(0, 16)

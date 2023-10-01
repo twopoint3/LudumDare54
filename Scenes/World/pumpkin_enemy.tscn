@@ -1,0 +1,46 @@
+[gd_scene load_steps=8 format=3 uid="uid://2euemqco8saw"]
+
+[ext_resource type="PackedScene" uid="uid://bkyb57xxntmyw" path="res://Scenes/World/b_enemy.tscn" id="1_5431y"]
+[ext_resource type="Texture2D" uid="uid://dtecxlks4b6yq" path="res://Sprites/Enemies/pumpkin.png" id="2_nyav2"]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_jgia5"]
+atlas = ExtResource("2_nyav2")
+region = Rect2(0, 0, 16, 18)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_vjvmt"]
+atlas = ExtResource("2_nyav2")
+region = Rect2(16, 0, 16, 18)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_ylav4"]
+atlas = ExtResource("2_nyav2")
+region = Rect2(32, 0, 16, 18)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_3hdek"]
+atlas = ExtResource("2_nyav2")
+region = Rect2(48, 0, 16, 18)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_nrfth"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_jgia5")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_vjvmt")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_ylav4")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_3hdek")
+}],
+"loop": true,
+"name": &"default",
+"speed": 5.0
+}]
+
+[node name="PumpkinEnemy" instance=ExtResource("1_5431y")]
+
+[node name="Sprite2D" parent="." index="1"]
+sprite_frames = SubResource("SpriteFrames_nrfth")
+frame_progress = 0.0

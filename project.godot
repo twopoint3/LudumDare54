@@ -19,6 +19,7 @@ config/icon="res://icon.svg"
 
 LevelChanger="*res://Scenes/level_changer.tscn"
 Globals="*res://Scripts/Globals.gd"
+Utilities="*res://Scenes/utilities.tscn"
 
 [display]
 

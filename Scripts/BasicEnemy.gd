@@ -11,6 +11,7 @@ class_name BasicEnemy
 @onready var area_hitbox = $HitBox
 @onready var collision_ray := $CollisionRay
 @onready var movement_timer := $MovementChanceTimer
+@onready var animation_player = $AnimationPlayer
 var timer
 var direction = Vector2.ZERO
 var target_position = Vector2.ZERO
@@ -27,6 +28,8 @@ func take_damage(damage_amount):
 		dealth()
 func dealth():
 	Globals.score += enemyScore
+	animation_player.play("Death")
+	await animation_player.animation_finished
 	queue_free()
 func move():
 	target_position.x = global_position.x + direction * 16

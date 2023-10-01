@@ -1,0 +1,46 @@
+[gd_scene load_steps=8 format=3 uid="uid://bfb5v4ehh5cn0"]
+
+[ext_resource type="PackedScene" uid="uid://bkyb57xxntmyw" path="res://Scenes/World/b_enemy.tscn" id="1_5euin"]
+[ext_resource type="Texture2D" uid="uid://by1qcwd3uede1" path="res://Sprites/Enemies/spooky_ghost.png" id="2_wt7am"]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_6igqc"]
+atlas = ExtResource("2_wt7am")
+region = Rect2(0, 0, 16, 18)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_pa13b"]
+atlas = ExtResource("2_wt7am")
+region = Rect2(16, 0, 16, 18)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_nlb6q"]
+atlas = ExtResource("2_wt7am")
+region = Rect2(32, 0, 16, 18)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_a0ymq"]
+atlas = ExtResource("2_wt7am")
+region = Rect2(48, 0, 16, 18)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_nog57"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_6igqc")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_pa13b")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_nlb6q")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_a0ymq")
+}],
+"loop": true,
+"name": &"default",
+"speed": 5.0
+}]
+
+[node name="GhostEnemy" instance=ExtResource("1_5euin")]
+
+[node name="Sprite2D" parent="." index="1"]
+sprite_frames = SubResource("SpriteFrames_nog57")
+frame_progress = 0.44826
