@@ -1,4 +1,4 @@
-[gd_scene load_steps=22 format=3 uid="uid://bckf4x1g847vb"]
+[gd_scene load_steps=21 format=3 uid="uid://bckf4x1g847vb"]
 
 [ext_resource type="Script" path="res://Scripts/LevelController.gd" id="1_cuv5v"]
 [ext_resource type="Script" path="res://Scripts/Camera2D.gd" id="2_gymkg"]
@@ -9,7 +9,6 @@
 [ext_resource type="PackedScene" uid="uid://vpnvhqjhqh0f" path="res://Scenes/World/wall.tscn" id="10_lvts4"]
 [ext_resource type="Script" path="res://Scripts/Lava.gd" id="11_10glm"]
 [ext_resource type="PackedScene" uid="uid://bpxqtmwtkyd35" path="res://Scenes/player_sword_projectile.tscn" id="11_72cgu"]
-[ext_resource type="PackedScene" uid="uid://bkyb57xxntmyw" path="res://Scenes/b_enemy.tscn" id="11_vjqp6"]
 [ext_resource type="Script" path="res://Scripts/BasicProjectile.gd" id="12_3sb77"]
 [ext_resource type="Texture2D" uid="uid://n73jg05xopmp" path="res://Sprites/Projectiles/Arrow.png" id="12_q3xk2"]
 [ext_resource type="Texture2D" uid="uid://duc46aujvb1j" path="res://Sprites/Tiles/Wall.png" id="13_yp54u"]
@@ -132,61 +131,7 @@ limit_right = 256
 limit_bottom = 144
 script = ExtResource("2_gymkg")
 
-<<<<<<< Updated upstream
-[node name="Player" type="CharacterBody2D" parent="Environment/Camera2D" groups=["Player"]]
-position = Vector2(-16, 56)
-script = ExtResource("3_y25dv")
-movement_speed = 0.12
-wait_before_move = 0.03
-metadata/_edit_group_ = true
-
-[node name="SwordHitBox" type="Area2D" parent="Environment/Camera2D/Player"]
-collision_layer = 2
-collision_mask = 16
-script = ExtResource("8_bq6wo")
-
-[node name="Sprite2D" type="Sprite2D" parent="Environment/Camera2D/Player/SwordHitBox"]
-texture = ExtResource("9_ub26g")
-centered = false
-
-[node name="CollisionShape2D" type="CollisionShape2D" parent="Environment/Camera2D/Player/SwordHitBox"]
-position = Vector2(8, 8)
-shape = SubResource("RectangleShape2D_0odcg")
-
-[node name="Sprite2D" type="Sprite2D" parent="Environment/Camera2D/Player"]
-texture = ExtResource("3_nasgk")
-centered = false
-
-[node name="CollisionShape2D" type="CollisionShape2D" parent="Environment/Camera2D/Player"]
-visible = false
-position = Vector2(8, 8)
-shape = SubResource("RectangleShape2D_rag8n")
-
-[node name="CollisionRay" type="RayCast2D" parent="Environment/Camera2D/Player"]
-position = Vector2(8, 8)
-target_position = Vector2(-16, 0)
-
-[node name="HurtBox" type="Area2D" parent="Environment/Camera2D/Player"]
-collision_layer = 4
-collision_mask = 40
-
-[node name="CollisionShape2D" type="CollisionShape2D" parent="Environment/Camera2D/Player/HurtBox"]
-position = Vector2(8, 8)
-shape = SubResource("RectangleShape2D_33gex")
-debug_color = Color(0.690196, 0.701961, 0, 0.419608)
-
-[node name="AnimationPlayer" type="AnimationPlayer" parent="Environment/Camera2D/Player"]
-libraries = {
-"": SubResource("AnimationLibrary_e0xfg")
-}
-=======
 [node name="Player" parent="Environment/Camera2D" instance=ExtResource("7_mgv0o")]
->>>>>>> Stashed changes
-
-[node name="Enemies" type="Node2D" parent="Environment"]
-
-[node name="bEnemy" parent="Environment/Enemies" instance=ExtResource("11_vjqp6")]
-position = Vector2(112, 16)
 
 [node name="Obstacles" type="Node2D" parent="Environment"]
 
