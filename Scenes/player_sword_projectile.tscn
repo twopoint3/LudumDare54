@@ -20,6 +20,8 @@ shape = SubResource("RectangleShape2D_vs8he")
 texture = ExtResource("2_04qkm")
 centered = false
 
-[node name="VisibleOnScreenEnabler2D" type="VisibleOnScreenEnabler2D" parent="."]
-position = Vector2(8, 8)
-scale = Vector2(0.8, 0.8)
+[node name="VisibleOnScreenNotifier2D" type="VisibleOnScreenNotifier2D" parent="."]
+position = Vector2(8, 8.5)
+scale = Vector2(0.8, 0.65)
+
+[connection signal="screen_exited" from="VisibleOnScreenNotifier2D" to="." method="_on_visible_on_screen_notifier_2d_screen_exited"]

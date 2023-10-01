@@ -1,9 +1,9 @@
-[gd_scene load_steps=14 format=3 uid="uid://cottu2ef8u5u5"]
+[gd_scene load_steps=15 format=3 uid="uid://cottu2ef8u5u5"]
 
 [ext_resource type="Script" path="res://Scripts/Player.gd" id="1_n04gd"]
 [ext_resource type="Script" path="res://Scripts/SwordHitBox.gd" id="2_tvsp4"]
 [ext_resource type="Texture2D" uid="uid://5jw7xpb0u1h" path="res://Sprites/Player/Sword.png" id="3_fcye7"]
-[ext_resource type="Texture2D" uid="uid://drmotftuxd3h0" path="res://Sprites/Player/walking_frogman.png" id="4_v4khl"]
+[ext_resource type="Texture2D" uid="uid://8u87831vlj84" path="res://Sprites/Player/frogman_spritesheet.png" id="4_03kl0"]
 
 [sub_resource type="Animation" id="Animation_wg0gi"]
 length = 0.001
@@ -22,10 +22,22 @@ tracks/0/keys = {
 tracks/1/type = "value"
 tracks/1/imported = false
 tracks/1/enabled = true
-tracks/1/path = NodePath("SwordHitBox/CollisionShape2D:disabled")
+tracks/1/path = NodePath("SwordHitBox:visible")
 tracks/1/interp = 1
 tracks/1/loop_wrap = true
 tracks/1/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [false]
+}
+tracks/2/type = "value"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath("SwordHitBox/SwordCollisionShape2D:disabled")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
 "times": PackedFloat32Array(0),
 "transitions": PackedFloat32Array(1),
 "update": 1,
@@ -34,7 +46,7 @@ tracks/1/keys = {
 
 [sub_resource type="Animation" id="Animation_nqqm5"]
 resource_name = "SwordAttack"
-length = 0.4
+length = 0.25
 step = 0.05
 tracks/0/type = "value"
 tracks/0/imported = false
@@ -55,7 +67,7 @@ tracks/1/path = NodePath(".")
 tracks/1/interp = 1
 tracks/1/loop_wrap = true
 tracks/1/keys = {
-"times": PackedFloat32Array(0.25),
+"times": PackedFloat32Array(0.2),
 "transitions": PackedFloat32Array(1),
 "values": [{
 "args": [],
@@ -65,11 +77,23 @@ tracks/1/keys = {
 tracks/2/type = "value"
 tracks/2/imported = false
 tracks/2/enabled = true
-tracks/2/path = NodePath("SwordHitBox/CollisionShape2D:disabled")
+tracks/2/path = NodePath("SwordHitBox:visible")
 tracks/2/interp = 1
 tracks/2/loop_wrap = true
 tracks/2/keys = {
 "times": PackedFloat32Array(0, 0.25),
+"transitions": PackedFloat32Array(1, 1),
+"update": 1,
+"values": [true, false]
+}
+tracks/3/type = "value"
+tracks/3/imported = false
+tracks/3/enabled = true
+tracks/3/path = NodePath("SwordHitBox/SwordCollisionShape2D:disabled")
+tracks/3/interp = 1
+tracks/3/loop_wrap = true
+tracks/3/keys = {
+"times": PackedFloat32Array(0, 0.2),
 "transitions": PackedFloat32Array(1, 1),
 "update": 1,
 "values": [false, true]
@@ -82,7 +106,7 @@ _data = {
 }
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_0odcg"]
-size = Vector2(10, 16)
+size = Vector2(10, 15)
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_uppyj"]
 radius = 8.0
@@ -134,10 +158,75 @@ tracks/0/keys = {
 "update": 1,
 "values": [Vector2i(0, 0)]
 }
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("Sprite2D:visible")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [true]
+}
+tracks/2/type = "value"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath(".:visible")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [true]
+}
+
+[sub_resource type="Animation" id="Animation_j3o6y"]
+resource_name = "fall_in"
+length = 0.6
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Sprite2D:frame_coords")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.1, 0.2, 0.3),
+"transitions": PackedFloat32Array(1, 1, 1, 1),
+"update": 1,
+"values": [Vector2i(0, 1), Vector2i(1, 1), Vector2i(2, 1), Vector2i(3, 1)]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("Sprite2D:visible")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0, 0.5),
+"transitions": PackedFloat32Array(1, 1),
+"update": 1,
+"values": [true, false]
+}
+tracks/2/type = "value"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath(".:visible")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(0, 0.5),
+"transitions": PackedFloat32Array(1, 1),
+"update": 1,
+"values": [true, false]
+}
 
 [sub_resource type="AnimationLibrary" id="AnimationLibrary_y8bh0"]
 _data = {
 "RESET": SubResource("Animation_0m42m"),
+"fall_in": SubResource("Animation_j3o6y"),
 "idle": SubResource("Animation_43dsm"),
 "walk": SubResource("Animation_qg28v")
 }
@@ -145,10 +234,11 @@ _data = {
 [node name="Player" type="CharacterBody2D" groups=["Player"]]
 y_sort_enabled = true
 script = ExtResource("1_n04gd")
-movement_speed = 0.25
+movement_speed = 0.16
 wait_before_move = 0.03
 
 [node name="SwordHitBox" type="Area2D" parent="."]
+visible = false
 collision_layer = 2
 collision_mask = 16
 script = ExtResource("2_tvsp4")
@@ -163,16 +253,17 @@ libraries = {
 "": SubResource("AnimationLibrary_e0xfg")
 }
 
-[node name="CollisionShape2D" type="CollisionShape2D" parent="SwordHitBox"]
-position = Vector2(8, 8)
+[node name="SwordCollisionShape2D" type="CollisionShape2D" parent="SwordHitBox"]
+position = Vector2(8, 8.5)
 shape = SubResource("RectangleShape2D_0odcg")
 disabled = true
 
 [node name="Sprite2D" type="Sprite2D" parent="."]
-texture = ExtResource("4_v4khl")
+texture = ExtResource("4_03kl0")
 centered = false
 offset = Vector2(0, -2)
 hframes = 4
+vframes = 3
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
 position = Vector2(8, 8)
@@ -190,7 +281,7 @@ collision_mask = 104
 polygon = PackedVector2Array(1, 1, 15, 1, 11, 16, 5, 16)
 
 [node name="ProjectileMarker" type="Marker2D" parent="."]
-position = Vector2(8, 8)
+position = Vector2(8, -1)
 
 [node name="AnimationPlayer" type="AnimationPlayer" parent="."]
 autoplay = "walk"
@@ -199,3 +290,4 @@ libraries = {
 }
 
 [connection signal="area_entered" from="HurtBox" to="." method="_on_hurtbox_area_entered"]
+[connection signal="body_entered" from="HurtBox" to="." method="_on_hurt_box_body_entered"]

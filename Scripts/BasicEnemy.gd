@@ -40,6 +40,7 @@ func move():
 
 func _on_hurtbox_area_entered(area:Area2D) -> void:
 	take_damage(area.damage)
+	print(area.name)
 
 func check_direction(direction):
 	collision_ray.target_position.x = direction * 16

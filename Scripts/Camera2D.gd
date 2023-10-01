@@ -17,7 +17,10 @@ func _process(delta: float) -> void:
 
 		offset = camera_shake()
 	
-
+func stop_camera_movement():
+	speed = 0
+func resume_camera_movement():
+	speed = 25
 func _physics_process(delta: float) -> void:
 	global_position.y -= speed * delta
 

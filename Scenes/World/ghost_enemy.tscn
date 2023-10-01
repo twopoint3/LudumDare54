@@ -1,6 +1,6 @@
 [gd_scene load_steps=8 format=3 uid="uid://bfb5v4ehh5cn0"]
 
-[ext_resource type="PackedScene" path="res://Scenes/World/b_enemy.tscn" id="1_5euin"]
+[ext_resource type="PackedScene" uid="uid://bkyb57xxntmyw" path="res://Scenes/World/b_enemy.tscn" id="1_5euin"]
 [ext_resource type="Texture2D" uid="uid://by1qcwd3uede1" path="res://Sprites/Enemies/spooky_ghost.png" id="2_wt7am"]
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_6igqc"]

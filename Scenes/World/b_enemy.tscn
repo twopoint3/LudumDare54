@@ -134,7 +134,7 @@ shape = SubResource("RectangleShape2D_swmbf")
 [node name="Sprite2D" type="AnimatedSprite2D" parent="."]
 sprite_frames = SubResource("SpriteFrames_igb4m")
 autoplay = "default"
-frame_progress = 0.934297
+frame_progress = 0.912256
 centered = false
 
 [node name="HurtBox" type="Area2D" parent="."]

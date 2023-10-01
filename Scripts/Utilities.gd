@@ -12,3 +12,7 @@ func _process(delta: float) -> void:
 
 func shake_camera(strength: float):
 	camera.shake_strength = strength
+func stop_camera():
+	camera.stop_camera_movement()
+func resume_camera_movement():
+	camera.resume_camera_movement()

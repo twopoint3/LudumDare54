@@ -13,7 +13,7 @@ signal health_changed
 @onready var sword_animation_player:AnimationPlayer = $SwordHitBox/AnimationPlayer
 @onready var animation_player:AnimationPlayer = $AnimationPlayer
 @onready var sword:Area2D = $SwordHitBox
-@onready var projectile_maker = $ProjectileMarker
+@onready var projectile_marker = $ProjectileMarker
 
 const tile_size = 16
 var target_position = Vector2.ZERO
@@ -26,6 +26,7 @@ var view
 var camera_pos
 var bounds_bw
 var bounds_fw 
+var tile_position
 var currect_health = max_health :
 	set (value):
 		currect_health = value
@@ -38,6 +39,7 @@ var currect_health = max_health :
 enum states {
 	NORMAL,
 	LAZER,
+	PITFALL
 }
 var currect_state = states.NORMAL
 
@@ -63,10 +65,18 @@ func _physics_process(delta: float) -> void:
 			normal_state()
 		states.LAZER:
 			lazer_state()
+		states.PITFALL:
+			pitfall_state(delta)
+
+func pitfall_state(delta):
+	if tween:
+		tween.kill()
+	#var tile_position = global_position.snapped(Vector2.ONE * tile_size)
+	global_position = global_position.lerp(tile_position, 3 * delta)
 
 func normal_state():
 	get_inputs()
-	if Input.is_action_just_pressed("Attack"):
+	if Input.is_action_just_pressed("Attack") and animation_player.is_playing():
 		sword_animation_player.play("SwordAttack")
 	if input_direction != Vector2.ZERO and !is_moving:
 		move()
@@ -145,7 +155,18 @@ func animation():
 
 func spawn_sword_projectile():
 	Utilities.shake_camera(0.3)
-	sword_animation_player.stop()
+	await sword_animation_player.animation_finished
 	var new_projectile = sword_projectile.instantiate()
-	new_projectile.global_position = sword.global_position - Vector2(0, 16)
+	await get_tree().physics_frame
+	new_projectile.global_position = sword.global_position
 	owner.add_child(new_projectile)
+func _on_hurt_box_body_entered(body: Node2D) -> void:
+	var layer = body
+	print(layer)
+	if layer is TileMap:
+		var local_position = layer.local_to_map(global_position)
+		tile_position = layer.map_to_local(local_position).snapped(Vector2.ONE * tile_size)
+		print(tile_position.snapped(Vector2.ONE * tile_size))
+		currect_state = states.PITFALL
+func disable_player():
+	pass
