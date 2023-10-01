@@ -18,19 +18,16 @@ script = ExtResource("1_sc3dj")
 metadata/_edit_group_ = true
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
-visible = false
 position = Vector2(8, 8)
 shape = SubResource("RectangleShape2D_swmbf")
 
 [node name="Sprite2D" type="Sprite2D" parent="."]
-modulate = Color(1, 0.0588235, 0, 1)
 texture = ExtResource("2_s0c1f")
 centered = false
 hframes = 4
 frame = 1
 
 [node name="HurtBox" type="Area2D" parent="."]
-visible = false
 collision_layer = 16
 collision_mask = 2
 
@@ -40,7 +37,6 @@ shape = SubResource("RectangleShape2D_wc4pp")
 debug_color = Color(0.690196, 0.701961, 0, 0.419608)
 
 [node name="HitBox" type="Area2D" parent="."]
-visible = false
 collision_layer = 8
 collision_mask = 4
 script = ExtResource("3_jw411")
@@ -55,7 +51,6 @@ position = Vector2(8, 8)
 target_position = Vector2(-16, 0)
 
 [node name="VisibleOnScreenEnabler2D" type="VisibleOnScreenEnabler2D" parent="."]
-visible = false
 position = Vector2(8, 8)
 scale = Vector2(0.9, 0.9)
 
