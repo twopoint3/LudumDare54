@@ -5,7 +5,7 @@
 [ext_resource type="TileSet" uid="uid://rjnrg7djq2by" path="res://level_1_tileset.tres" id="3_qmdqv"]
 [ext_resource type="Script" path="res://Scripts/Camera2D.gd" id="5_luqkq"]
 [ext_resource type="PackedScene" uid="uid://cottu2ef8u5u5" path="res://Scenes/player.tscn" id="6_w43fy"]
-[ext_resource type="PackedScene" uid="uid://bkyb57xxntmyw" path="res://Scenes/b_enemy.tscn" id="10_uqkem"]
+[ext_resource type="PackedScene" uid="uid://bkyb57xxntmyw" path="res://Scenes/World/b_enemy.tscn" id="10_uqkem"]
 [ext_resource type="Script" path="res://Scripts/Lava.gd" id="11_0rsfx"]
 [ext_resource type="Texture2D" uid="uid://dkf4n1obx3jf7" path="res://Sprites/Tiles/Lava.png" id="12_d4jum"]
 [ext_resource type="Texture2D" uid="uid://duc46aujvb1j" path="res://Sprites/Tiles/Wall.png" id="13_u0rq5"]
