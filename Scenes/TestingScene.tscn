@@ -1,4 +1,4 @@
-[gd_scene load_steps=20 format=3 uid="uid://cwfw8h2pmpkw"]
+[gd_scene load_steps=21 format=3 uid="uid://cwfw8h2pmpkw"]
 
 [ext_resource type="Script" path="res://Scripts/LevelController.gd" id="1_oa42v"]
 [ext_resource type="PackedScene" uid="uid://b3p6imdx57ro6" path="res://Scenes/hud.tscn" id="2_qnwoa"]
@@ -14,6 +14,7 @@
 [ext_resource type="PackedScene" uid="uid://dhj463recr3y6" path="res://Scenes/World/spider_enemy.tscn" id="15_0b7pe"]
 [ext_resource type="PackedScene" uid="uid://bnimi4pul5hxj" path="res://Scenes/World/lazer_powerup.tscn" id="15_rbr3r"]
 [ext_resource type="PackedScene" uid="uid://cge5h5gwevkk7" path="res://Scenes/World/vase.tscn" id="15_y7cd8"]
+[ext_resource type="PackedScene" uid="uid://k6nr85vs085r" path="res://Scenes/World/enemy_energyball_projectile.tscn" id="16_fxxkk"]
 [ext_resource type="Script" path="res://Scripts/Goal.gd" id="17_3in3m"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_y3bl1"]
@@ -215,5 +216,11 @@ speed = 0
 
 [node name="Player" parent="Camera2D" instance=ExtResource("6_w43fy")]
 position = Vector2(-16, 40)
+
+[node name="EnemyEnergyBallProjectile" parent="." instance=ExtResource("16_fxxkk")]
+position = Vector2(96, 48)
+
+[node name="EnemyEnergyBallProjectile2" parent="." instance=ExtResource("16_fxxkk")]
+position = Vector2(128, 48)
 
 [connection signal="area_entered" from="Environment/Goal" to="Environment/Goal" method="_on_area_entered" flags=18]
