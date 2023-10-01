@@ -1,6 +1,6 @@
 [gd_scene load_steps=8 format=3 uid="uid://2euemqco8saw"]
 
-[ext_resource type="PackedScene" uid="uid://bkyb57xxntmyw" path="res://Scenes/World/b_enemy.tscn" id="1_5431y"]
+[ext_resource type="PackedScene" path="res://Scenes/World/b_enemy.tscn" id="1_5431y"]
 [ext_resource type="Texture2D" uid="uid://dtecxlks4b6yq" path="res://Sprites/Enemies/pumpkin.png" id="2_nyav2"]
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_jgia5"]
