@@ -10,6 +10,7 @@ signal health_changed
 @export var wait_before_move = 0.1
 @export var lazer_time = 5 ##The amount of time in the lazer state
 
+@onready var sword_animation_player:AnimationPlayer = $SwordHitBox/AnimationPlayer
 @onready var animation_player:AnimationPlayer = $AnimationPlayer
 @onready var sword:Area2D = $SwordHitBox
 @onready var projectile_maker = $ProjectileMarker
@@ -66,7 +67,7 @@ func _physics_process(delta: float) -> void:
 func normal_state():
 	get_inputs()
 	if Input.is_action_just_pressed("Attack"):
-		animation_player.play("SwordAttack")
+		sword_animation_player.play("SwordAttack")
 	if input_direction != Vector2.ZERO and !is_moving:
 		move()
 
@@ -81,8 +82,8 @@ func lazer_state():
 	await get_tree().physics_frame
 	new_lazer.global_position = global_position
 	await get_tree().create_timer(lazer_time).timeout
-	new_lazer.animation_player.play_backwards("Start")
-	await new_lazer.animation_player.animation_finished
+	new_lazer.sword_animation_player.play_backwards("Start")
+	await new_lazer.sword_animation_player.animation_finished
 	new_lazer.queue_free()
 	currect_state = states.NORMAL
 func get_inputs():
@@ -94,6 +95,7 @@ func move():
 	if !can_move():
 		return
 	is_moving = true
+	animation_player.play("walk")
 	target_position = (global_position + input_direction * tile_size).snapped(Vector2.ONE * tile_size)
 
 	if target_position.y > bounds_bw and target_position.y < bounds_fw:
@@ -137,8 +139,11 @@ func _on_hurtbox_area_entered(area: Area2D) -> void:
 func take_damage(damage_amount):
 	currect_health -= damage_amount
 
+func animation():
+	pass
+
 func spawn_sword_projectile():
-	animation_player.stop()
+	sword_animation_player.stop()
 	var new_projectile = sword_projectile.instantiate()
 	new_projectile.global_position = sword.global_position - Vector2(0, 16)
 	owner.add_child(new_projectile)

@@ -1,15 +1,9 @@
-[gd_scene load_steps=10 format=3 uid="uid://cottu2ef8u5u5"]
+[gd_scene load_steps=14 format=3 uid="uid://cottu2ef8u5u5"]
 
 [ext_resource type="Script" path="res://Scripts/Player.gd" id="1_n04gd"]
 [ext_resource type="Script" path="res://Scripts/SwordHitBox.gd" id="2_tvsp4"]
 [ext_resource type="Texture2D" uid="uid://5jw7xpb0u1h" path="res://Sprites/Player/Sword.png" id="3_fcye7"]
-[ext_resource type="Texture2D" uid="uid://hbelvyuydjev" path="res://Sprites/Player/TempPlayer.png" id="4_dffly"]
-
-[sub_resource type="RectangleShape2D" id="RectangleShape2D_0odcg"]
-size = Vector2(10, 16)
-
-[sub_resource type="CircleShape2D" id="CircleShape2D_uppyj"]
-radius = 8.0
+[ext_resource type="Texture2D" uid="uid://drmotftuxd3h0" path="res://Sprites/Player/walking_frogman.png" id="4_v4khl"]
 
 [sub_resource type="Animation" id="Animation_wg0gi"]
 length = 0.001
@@ -41,6 +35,7 @@ tracks/1/keys = {
 [sub_resource type="Animation" id="Animation_nqqm5"]
 resource_name = "SwordAttack"
 length = 0.4
+step = 0.05
 tracks/0/type = "value"
 tracks/0/imported = false
 tracks/0/enabled = true
@@ -48,7 +43,7 @@ tracks/0/path = NodePath("SwordHitBox:position")
 tracks/0/interp = 1
 tracks/0/loop_wrap = true
 tracks/0/keys = {
-"times": PackedFloat32Array(0, 0.1, 0.2, 0.3),
+"times": PackedFloat32Array(0, 0.05, 0.1, 0.15),
 "transitions": PackedFloat32Array(1, 1, 1, 1),
 "update": 1,
 "values": [Vector2(0, 0), Vector2(0, -6), Vector2(0, -10), Vector2(0, -16)]
@@ -60,7 +55,7 @@ tracks/1/path = NodePath(".")
 tracks/1/interp = 1
 tracks/1/loop_wrap = true
 tracks/1/keys = {
-"times": PackedFloat32Array(0.4),
+"times": PackedFloat32Array(0.25),
 "transitions": PackedFloat32Array(1),
 "values": [{
 "args": [],
@@ -74,7 +69,7 @@ tracks/2/path = NodePath("SwordHitBox/CollisionShape2D:disabled")
 tracks/2/interp = 1
 tracks/2/loop_wrap = true
 tracks/2/keys = {
-"times": PackedFloat32Array(0, 0.4),
+"times": PackedFloat32Array(0, 0.25),
 "transitions": PackedFloat32Array(1, 1),
 "update": 1,
 "values": [false, true]
@@ -84,6 +79,67 @@ tracks/2/keys = {
 _data = {
 "RESET": SubResource("Animation_wg0gi"),
 "SwordAttack": SubResource("Animation_nqqm5")
+}
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_0odcg"]
+size = Vector2(10, 16)
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_uppyj"]
+radius = 8.0
+
+[sub_resource type="Animation" id="Animation_43dsm"]
+resource_name = "idle"
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Sprite2D:frame_coords")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [Vector2i(0, 0)]
+}
+
+[sub_resource type="Animation" id="Animation_qg28v"]
+resource_name = "walk"
+length = 0.8
+loop_mode = 1
+step = 0.2
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Sprite2D:frame_coords")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.2, 0.4, 0.6),
+"transitions": PackedFloat32Array(1, 1, 1, 1),
+"update": 1,
+"values": [Vector2i(0, 0), Vector2i(1, 0), Vector2i(2, 0), Vector2i(3, 0)]
+}
+
+[sub_resource type="Animation" id="Animation_0m42m"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Sprite2D:frame_coords")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [Vector2i(0, 0)]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_y8bh0"]
+_data = {
+"RESET": SubResource("Animation_0m42m"),
+"idle": SubResource("Animation_43dsm"),
+"walk": SubResource("Animation_qg28v")
 }
 
 [node name="Player" type="CharacterBody2D" groups=["Player"]]
@@ -101,14 +157,22 @@ script = ExtResource("2_tvsp4")
 texture = ExtResource("3_fcye7")
 centered = false
 
+[node name="AnimationPlayer" type="AnimationPlayer" parent="SwordHitBox"]
+root_node = NodePath("../..")
+libraries = {
+"": SubResource("AnimationLibrary_e0xfg")
+}
+
 [node name="CollisionShape2D" type="CollisionShape2D" parent="SwordHitBox"]
 position = Vector2(8, 8)
 shape = SubResource("RectangleShape2D_0odcg")
 disabled = true
 
 [node name="Sprite2D" type="Sprite2D" parent="."]
-texture = ExtResource("4_dffly")
+texture = ExtResource("4_v4khl")
 centered = false
+offset = Vector2(0, -2)
+hframes = 4
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
 position = Vector2(8, 8)
@@ -125,12 +189,13 @@ collision_mask = 104
 [node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="HurtBox"]
 polygon = PackedVector2Array(1, 1, 15, 1, 11, 16, 5, 16)
 
-[node name="AnimationPlayer" type="AnimationPlayer" parent="."]
-libraries = {
-"": SubResource("AnimationLibrary_e0xfg")
-}
-
 [node name="ProjectileMarker" type="Marker2D" parent="."]
 position = Vector2(8, 8)
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="."]
+autoplay = "walk"
+libraries = {
+"": SubResource("AnimationLibrary_y8bh0")
+}
 
 [connection signal="area_entered" from="HurtBox" to="." method="_on_hurtbox_area_entered"]
