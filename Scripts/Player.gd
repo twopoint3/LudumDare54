@@ -21,6 +21,10 @@ var is_moving = false
 var direction: float
 var input_direction = Vector2.ZERO
 var new_lazer: BasicProjectile
+var view
+var camera_pos
+var bounds_bw
+var bounds_fw 
 var currect_health = max_health :
 	set (value):
 		currect_health = value
@@ -41,6 +45,18 @@ func _ready() -> void:
 	global_position = global_position.snapped(Vector2.ONE * tile_size)
 
 func _physics_process(delta: float) -> void:
+	#get the viewport size and divide by 2 since this is where the camera is positioned
+	view = get_viewport_rect().size / 2
+
+	#get the camera position
+	camera_pos = get_viewport().get_camera_2d().global_position
+
+	bounds_bw = camera_pos.y - view.y
+	bounds_fw = camera_pos.y + view.y - 16
+
+	#after the character is moved clamp its position to the end of the camera bounds
+	global_position.y = clamp(global_position.y, bounds_bw, bounds_fw)
+
 	match currect_state:
 		states.NORMAL:
 			normal_state()
@@ -78,15 +94,13 @@ func move():
 	if !can_move():
 		return
 	is_moving = true
-	target_position = global_position + input_direction * tile_size
-	target_position = round(target_position)
+	target_position = (global_position + input_direction * tile_size).snapped(Vector2.ONE * tile_size)
 
-	#target_position.y = clamp(target_position.y, -72, 56)
-
-	tween = create_tween()
-	tween.tween_property(self, "global_position", target_position, movement_speed)
-	await tween.finished
-	await get_tree().create_timer(wait_before_move).timeout
+	if target_position.y > bounds_bw and target_position.y < bounds_fw:
+		tween = create_tween()
+		tween.tween_property(self, "global_position", target_position, movement_speed)
+		await tween.finished
+		await get_tree().create_timer(wait_before_move).timeout
 	is_moving = false
 
 func can_move():

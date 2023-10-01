@@ -1,11 +1,11 @@
 [gd_scene load_steps=3 format=3 uid="uid://dx11lmn8en8a3"]
 
 [ext_resource type="PackedScene" uid="uid://bcush4wkm6u5p" path="res://Scenes/basic_collectables.tscn" id="1_d00mg"]
-[ext_resource type="Texture2D" uid="uid://mr1il5np6phc" path="res://Sprites/GoldenBug.png" id="2_1eota"]
+[ext_resource type="Texture2D" uid="uid://db72nuruoysaa" path="res://Sprites/bug.png" id="2_qwlri"]
 
 [node name="GoldenBug" instance=ExtResource("1_d00mg")]
 score = 10
 heal_amount = 2
 
 [node name="Sprite2D" parent="." index="0"]
-texture = ExtResource("2_1eota")
+texture = ExtResource("2_qwlri")

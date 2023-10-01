@@ -48,6 +48,7 @@ layer_1/tile_data = PackedInt32Array(-786424, 262145, 0, -786425, 262145, 0, -78
 
 [node name="Player" parent="Environment" instance=ExtResource("7_mgv0o")]
 position = Vector2(144, 64)
+movement_speed = 0.19
 
 [node name="Camera2D" type="Camera2D" parent="Environment"]
 position = Vector2(128, 72)
