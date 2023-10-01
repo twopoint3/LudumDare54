@@ -1,0 +1,22 @@
+[gd_scene load_steps=4 format=3 uid="uid://chvs78hb2wx58"]
+
+[ext_resource type="Script" path="res://Scripts/Lava.gd" id="1_bb785"]
+[ext_resource type="Texture2D" uid="uid://dkf4n1obx3jf7" path="res://Sprites/Tiles/Lava.png" id="2_2gdpv"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_y3bl1"]
+size = Vector2(14, 14)
+
+[node name="Lava" type="Area2D"]
+collision_layer = 8
+collision_mask = 4
+script = ExtResource("1_bb785")
+metadata/_edit_group_ = true
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+texture = ExtResource("2_2gdpv")
+centered = false
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+position = Vector2(8, 8)
+shape = SubResource("RectangleShape2D_y3bl1")
+debug_color = Color(0.701961, 0, 0.0117647, 0.419608)

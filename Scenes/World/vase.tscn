@@ -1,0 +1,42 @@
+[gd_scene load_steps=7 format=3 uid="uid://cge5h5gwevkk7"]
+
+[ext_resource type="Script" path="res://Scripts/Breakable.gd" id="1_o05hn"]
+[ext_resource type="PackedScene" uid="uid://dx11lmn8en8a3" path="res://Scenes/World/golden_bug.tscn" id="2_x8fdc"]
+[ext_resource type="Texture2D" uid="uid://cm1vvfao00lwu" path="res://Sprites/Tiles/pots.png" id="3_e5l24"]
+[ext_resource type="Script" path="res://Scripts/EnemyHitbox.gd" id="3_pqync"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_fdu4b"]
+size = Vector2(16, 16)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_qr6gx"]
+size = Vector2(12, 7)
+
+[node name="Vase" type="Area2D"]
+collision_layer = 16
+collision_mask = 2
+script = ExtResource("1_o05hn")
+item_dropped = [ExtResource("2_x8fdc")]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+position = Vector2(8, 8)
+shape = SubResource("RectangleShape2D_fdu4b")
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+texture = ExtResource("3_e5l24")
+centered = false
+hframes = 2
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="."]
+
+[node name="Area2D" type="Area2D" parent="."]
+collision_layer = 8
+collision_mask = 4
+script = ExtResource("3_pqync")
+damage = 1
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Area2D"]
+position = Vector2(8, 9.5)
+shape = SubResource("RectangleShape2D_qr6gx")
+debug_color = Color(0.701961, 0, 0.0117647, 0.419608)
+
+[connection signal="area_entered" from="." to="." method="_on_area_entered"]

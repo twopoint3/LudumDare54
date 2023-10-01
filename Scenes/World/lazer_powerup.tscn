@@ -1,0 +1,11 @@
+[gd_scene load_steps=3 format=3 uid="uid://bnimi4pul5hxj"]
+
+[ext_resource type="PackedScene" uid="uid://bcush4wkm6u5p" path="res://Scenes/basic_collectables.tscn" id="1_erfwa"]
+[ext_resource type="Texture2D" uid="uid://s7k5rrdhv120" path="res://Sprites/Lazer.png" id="2_fxltf"]
+
+[node name="BasicCollectables" instance=ExtResource("1_erfwa")]
+type = "Lazer"
+heal_amount = 0
+
+[node name="Sprite2D" parent="." index="0"]
+texture = ExtResource("2_fxltf")

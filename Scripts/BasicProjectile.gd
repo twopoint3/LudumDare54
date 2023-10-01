@@ -12,6 +12,8 @@ func _ready() -> void:
 	global_position = global_position.snapped(Vector2.ONE * 16)
 
 func _physics_process(delta: float) -> void:
+	if direction == Vector2.ZERO or speed == 0:
+		return
 	global_position += direction * speed * delta
 
 func _on_area_entered(area:Area2D) -> void:

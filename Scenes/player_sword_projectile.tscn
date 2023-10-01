@@ -4,7 +4,7 @@
 [ext_resource type="Texture2D" uid="uid://biih7mb171tgy" path="res://Sprites/Player/SwordProjectile.png" id="2_04qkm"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_vs8he"]
-size = Vector2(14, 12)
+size = Vector2(10, 14.875)
 
 [node name="SwordProjectile" type="Area2D"]
 collision_layer = 2

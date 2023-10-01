@@ -26,6 +26,7 @@ func take_damage(damage_amount):
 	if currect_health <= 0:
 		dealth()
 func dealth():
+	Globals.score += enemyScore
 	queue_free()
 func move():
 	target_position.x = global_position.x + direction * 16

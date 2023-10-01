@@ -1,0 +1,19 @@
+[gd_scene load_steps=3 format=3 uid="uid://bcush4wkm6u5p"]
+
+[ext_resource type="Script" path="res://Scripts/BasicCollectables.gd" id="1_0fua1"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_rabq1"]
+size = Vector2(16, 16)
+
+[node name="BasicCollectables" type="Area2D"]
+collision_layer = 64
+collision_mask = 0
+script = ExtResource("1_0fua1")
+type = "Heal"
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+centered = false
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+position = Vector2(8, 8)
+shape = SubResource("RectangleShape2D_rabq1")
