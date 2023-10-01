@@ -78,13 +78,13 @@ func move():
 	if !can_move():
 		return
 	is_moving = true
-	target_position = position + input_direction * tile_size
+	target_position = global_position + input_direction * tile_size
 	target_position = round(target_position)
 
-	target_position.y = clamp(target_position.y, -72, 56)
+	#target_position.y = clamp(target_position.y, -72, 56)
 
 	tween = create_tween()
-	tween.tween_property(self, "position", target_position, movement_speed)
+	tween.tween_property(self, "global_position", target_position, movement_speed)
 	await tween.finished
 	await get_tree().create_timer(wait_before_move).timeout
 	is_moving = false
