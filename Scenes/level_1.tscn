@@ -58,9 +58,6 @@ position = Vector2(128, 21.5)
 [node name="FrontOfDoor" parent="Environment/Goal" index="1"]
 position = Vector2(128, 16)
 
-[node name="Sprite2D" parent="Environment/Goal" index="2"]
-position = Vector2(128, 0)
-
 [node name="Enemies" type="Node2D" parent="Environment"]
 
 [node name="PumpkinEnemy" parent="Environment/Enemies" instance=ExtResource("8_54csp")]
