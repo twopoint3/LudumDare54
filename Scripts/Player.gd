@@ -13,20 +13,23 @@ signal health_changed
 @onready var sword_animation_player:AnimationPlayer = $SwordHitBox/AnimationPlayer
 @onready var animation_player:AnimationPlayer = $AnimationPlayer
 @onready var sword:Area2D = $SwordHitBox
-@onready var projectile_marker = $ProjectileMarker
+@onready var player_center = $PlayerCenter
+@onready var hurt_box:Area2D = $HurtBox
 
 const tile_size = 16
 var target_position = Vector2.ZERO
 var tween: Tween
 var is_moving = false
+var is_died = false
 var direction: float
 var input_direction = Vector2.ZERO
 var new_lazer: BasicProjectile
+var goal: Area2D
 var view
 var camera_pos
 var bounds_bw
 var bounds_fw 
-var tile_position
+var global_tile_center
 var currect_health = max_health :
 	set (value):
 		currect_health = value
@@ -39,7 +42,9 @@ var currect_health = max_health :
 enum states {
 	NORMAL,
 	LAZER,
-	PITFALL
+	PITFALL,
+	DIED,
+	GOAL
 }
 var currect_state = states.NORMAL
 
@@ -49,16 +54,14 @@ func _ready() -> void:
 
 func _physics_process(delta: float) -> void:
 	#get the viewport size and divide by 2 since this is where the camera is positioned
-	view = get_viewport_rect().size / 2
-
-	#get the camera position
-	camera_pos = get_viewport().get_camera_2d().global_position
-
-	bounds_bw = camera_pos.y - view.y
-	bounds_fw = camera_pos.y + view.y - 16
-
-	#after the character is moved clamp its position to the end of the camera bounds
-	global_position.y = clamp(global_position.y, bounds_bw, bounds_fw)
+	if !is_died or get_viewport().get_camera_2d().speed > 0:
+		view = get_viewport_rect().size / 2
+		#get the camera position
+		camera_pos = get_viewport().get_camera_2d().global_position
+		bounds_bw = camera_pos.y - view.y
+		bounds_fw = camera_pos.y + view.y - 16
+		#after the character is moved clamp its position to the end of the camera bounds
+		global_position.y = clamp(global_position.y, bounds_bw, bounds_fw)
 
 	match currect_state:
 		states.NORMAL:
@@ -67,13 +70,47 @@ func _physics_process(delta: float) -> void:
 			lazer_state()
 		states.PITFALL:
 			pitfall_state(delta)
-
+		states.GOAL:
+			goal_state(delta)
+func goal_state(delta):
+	if visible == false:
+		return
+	Utilities.stop_camera()
+	if tween:
+		tween.kill()
+	var target = goal.front_door.global_position + Vector2(-8, -8)
+	global_position = global_position.lerp(target, 3 * delta)
+	var next_level = goal.next_level
+	if global_position.distance_to(target) < 0.2:
+		visible = false
+		goal.animation_player.play("End")
+		await goal.animation_player.animation_finished
+		if next_level == null:
+			var main = load("res://Scenes/Main_menu.tscn")
+			LevelChanger.change_level("Fade", main)
+		else:
+			LevelChanger.change_level("Fade", next_level)
 func pitfall_state(delta):
 	if tween:
 		tween.kill()
-	#var tile_position = global_position.snapped(Vector2.ONE * tile_size)
-	global_position = global_position.lerp(tile_position, 3 * delta)
+	if !is_died:
+		player_center.global_position = (global_tile_center + Vector2(-8, -8)).snapped(Vector2.ONE * tile_size)
 
+		global_position = global_position.lerp(player_center.global_position, 6 * delta)
+		Utilities.stop_camera()
+
+		if global_position.distance_to(player_center.global_position) < 0.01 :
+			global_position.snapped(Vector2.ONE * tile_size)
+			animation_player.play("fall_in")
+			await animation_player.animation_finished
+			is_died = true
+			currect_health = 0
+			LevelChanger.restart_level("Fade")
+		
+		return
+		
+	
+	
 func normal_state():
 	get_inputs()
 	if Input.is_action_just_pressed("Attack") and animation_player.is_playing():
@@ -146,9 +183,19 @@ func _on_hurtbox_area_entered(area: Area2D) -> void:
 			if area.score > 0:
 				Globals.score += area.score
 			area.queue_free()
+		128:
+			print("goal!")
+			goal = area
+			currect_state = states.GOAL
 
 func take_damage(damage_amount):
 	currect_health -= damage_amount
+	if currect_health <= 0:
+		death()
+func death():
+	currect_state = states.DIED
+	Utilities.stop_camera()
+	LevelChanger.restart_level("Fade")
 
 func animation():
 	pass
@@ -164,9 +211,20 @@ func _on_hurt_box_body_entered(body: Node2D) -> void:
 	var layer = body
 	print(layer)
 	if layer is TileMap:
-		var local_position = layer.local_to_map(global_position)
-		tile_position = layer.map_to_local(local_position).snapped(Vector2.ONE * tile_size)
-		print(tile_position.snapped(Vector2.ONE * tile_size))
+		var local_position = to_local(player_center.global_position)
+		var map_position = layer.local_to_map(local_position)
+		var local_tile_center = layer.map_to_local(map_position)
+		global_tile_center = to_global(local_tile_center)
+		var tile_id = layer.get_cell_source_id(0, map_position, true)
+
+
+		print("-  " + str(global_tile_center))
+		#tile_position = layer.map_to_local(local_position)
+		#print(tile_position.snapped(Vector2.ONE * tile_size))
 		currect_state = states.PITFALL
 func disable_player():
 	pass
+func _integrate_forces(state):
+	if state.get_contact_count() > 0:
+		var contact_position = state.get_contact_local_position(0)
+		print("Collision happened at: " + str(contact_position))

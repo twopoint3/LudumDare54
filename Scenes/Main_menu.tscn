@@ -1,20 +1,64 @@
-[gd_scene load_steps=5 format=3 uid="uid://bql6fam0suwjy"]
+[gd_scene load_steps=16 format=3 uid="uid://bql6fam0suwjy"]
 
 [ext_resource type="Script" path="res://Scripts/MainMenu.gd" id="1_ylo06"]
+[ext_resource type="Texture2D" uid="uid://qotydo0apleq" path="res://Sprites/HUD/TransitionBoxpng.png" id="2_2i874"]
+[ext_resource type="Texture2D" uid="uid://d3gypl22b8xkl" path="res://Sprites/MainMenu/logo.png" id="3_4ab33"]
+[ext_resource type="Texture2D" uid="uid://c3uwffravtw57" path="res://Sprites/MainMenu/title_screen.png" id="4_36s4f"]
+[ext_resource type="Texture2D" uid="uid://dqofct6me01n2" path="res://Sprites/MainMenu/sleepy_guy.png" id="5_201yy"]
+[ext_resource type="Texture2D" uid="uid://defotw631h0un" path="res://Sprites/HUD/WhiteBox.png" id="6_3drh6"]
+[ext_resource type="Theme" uid="uid://rshu4syu4wem" path="res://hud.tres" id="6_estm4"]
 
 [sub_resource type="Animation" id="Animation_fo2k1"]
 resource_name = "Opening"
+length = 12.0
+step = 0.05
 tracks/0/type = "value"
 tracks/0/imported = false
 tracks/0/enabled = true
-tracks/0/path = NodePath("Menu:position")
+tracks/0/path = NodePath("Camera2D:position")
 tracks/0/interp = 1
 tracks/0/loop_wrap = true
 tracks/0/keys = {
-"times": PackedFloat32Array(0, 1),
+"times": PackedFloat32Array(3.3, 9.1),
 "transitions": PackedFloat32Array(1, 1),
 "update": 0,
-"values": [Vector2(105, -36), Vector2(105, 24)]
+"values": [Vector2(128, 72), Vector2(129, -248)]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("Whilebox:modulate")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0, 9.1, 9.3, 9.35, 9.4, 9.45, 9.5, 9.55),
+"transitions": PackedFloat32Array(1, 1, 1, 1, 1, 1, 1, 1),
+"update": 1,
+"values": [Color(1, 1, 1, 0), Color(1, 1, 1, 0), Color(1, 1, 1, 0.196078), Color(1, 1, 1, 0.392157), Color(1, 1, 1, 0.588235), Color(1, 1, 1, 0.784314), Color(1, 1, 1, 1), Color(1, 1, 1, 0)]
+}
+tracks/2/type = "value"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath("Logo:visible")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(0, 9.5),
+"transitions": PackedFloat32Array(1, 1),
+"update": 1,
+"values": [false, true]
+}
+tracks/3/type = "value"
+tracks/3/imported = false
+tracks/3/enabled = true
+tracks/3/path = NodePath("Label2:visible")
+tracks/3/interp = 1
+tracks/3/loop_wrap = true
+tracks/3/keys = {
+"times": PackedFloat32Array(0, 9.8),
+"transitions": PackedFloat32Array(1, 1),
+"update": 1,
+"values": [false, true]
 }
 
 [sub_resource type="Animation" id="Animation_4qdsy"]
@@ -22,14 +66,50 @@ length = 0.001
 tracks/0/type = "value"
 tracks/0/imported = false
 tracks/0/enabled = true
-tracks/0/path = NodePath("Menu:position")
+tracks/0/path = NodePath("Camera2D:position")
 tracks/0/interp = 1
 tracks/0/loop_wrap = true
 tracks/0/keys = {
 "times": PackedFloat32Array(0),
 "transitions": PackedFloat32Array(1),
 "update": 0,
-"values": [Vector2(105, -36)]
+"values": [Vector2(128, 72)]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("Whilebox:modulate")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Color(1, 1, 1, 0)]
+}
+tracks/2/type = "value"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath("Logo:visible")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [true]
+}
+tracks/3/type = "value"
+tracks/3/imported = false
+tracks/3/enabled = true
+tracks/3/path = NodePath("Label2:visible")
+tracks/3/interp = 1
+tracks/3/loop_wrap = true
+tracks/3/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [true]
 }
 
 [sub_resource type="AnimationLibrary" id="AnimationLibrary_pcx6t"]
@@ -37,6 +117,42 @@ _data = {
 "Opening": SubResource("Animation_fo2k1"),
 "RESET": SubResource("Animation_4qdsy")
 }
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_00cmr"]
+atlas = ExtResource("5_201yy")
+region = Rect2(0, 0, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_odrx1"]
+atlas = ExtResource("5_201yy")
+region = Rect2(32, 0, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_eh431"]
+atlas = ExtResource("5_201yy")
+region = Rect2(64, 0, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_3yp13"]
+atlas = ExtResource("5_201yy")
+region = Rect2(96, 0, 32, 32)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_l8l0d"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_00cmr")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_odrx1")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_eh431")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_3yp13")
+}],
+"loop": true,
+"name": &"default",
+"speed": 4.0
+}]
 
 [node name="MainMenu" type="Control"]
 layout_mode = 3
@@ -54,30 +170,13 @@ anchor_left = 0.5
 anchor_top = 0.5
 anchor_right = 0.5
 anchor_bottom = 0.5
-offset_left = 105.0
-offset_top = -36.0
-offset_right = 168.0
-offset_bottom = -9.99997
+offset_left = -23.0
+offset_top = -108.0
+offset_right = 40.0
+offset_bottom = -82.0
 grow_horizontal = 2
 grow_vertical = 2
 text = "Meun"
-horizontal_alignment = 1
-vertical_alignment = 1
-
-[node name="Label2" type="Label" parent="."]
-layout_mode = 1
-anchors_preset = 8
-anchor_left = 0.5
-anchor_top = 0.5
-anchor_right = 0.5
-anchor_bottom = 0.5
-offset_left = -23.0
-offset_top = -17.5
-offset_right = 25.0
-offset_bottom = 17.5
-grow_horizontal = 2
-grow_vertical = 2
-text = "START"
 horizontal_alignment = 1
 vertical_alignment = 1
 
@@ -92,3 +191,50 @@ offset_bottom = 144.0
 libraries = {
 "": SubResource("AnimationLibrary_pcx6t")
 }
+
+[node name="BG" type="Sprite2D" parent="."]
+position = Vector2(138, -108)
+scale = Vector2(1.88281, 3.5)
+texture = ExtResource("2_2i874")
+
+[node name="TitleScreen" type="Sprite2D" parent="."]
+position = Vector2(128, -96)
+texture = ExtResource("4_36s4f")
+
+[node name="Logo" type="Sprite2D" parent="."]
+position = Vector2(126, -262)
+texture = ExtResource("3_4ab33")
+
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
+position = Vector2(79, 112)
+sprite_frames = SubResource("SpriteFrames_l8l0d")
+autoplay = "default"
+frame_progress = 0.400525
+
+[node name="Camera2D" type="Camera2D" parent="."]
+position = Vector2(128, 72)
+
+[node name="Label2" type="Label" parent="."]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -39.0
+offset_top = -309.0
+offset_right = 40.0
+offset_bottom = -274.0
+grow_horizontal = 2
+grow_vertical = 2
+theme = ExtResource("6_estm4")
+text = "START"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="Whilebox" type="Sprite2D" parent="."]
+modulate = Color(1, 1, 1, 0)
+position = Vector2(128, -266.5)
+scale = Vector2(1, 1.28472)
+texture = ExtResource("6_3drh6")
+metadata/_edit_lock_ = true

@@ -1,13 +1,9 @@
-[gd_scene load_steps=6 format=3 uid="uid://b3p6imdx57ro6"]
+[gd_scene load_steps=5 format=3 uid="uid://b3p6imdx57ro6"]
 
 [ext_resource type="Script" path="res://Scripts/HUD.gd" id="1_usuwy"]
 [ext_resource type="Texture2D" uid="uid://bt7pvi5tdrmk6" path="res://Sprites/HUD/health_border.png" id="2_dnakt"]
 [ext_resource type="Texture2D" uid="uid://dwhsir4uc7ysy" path="res://Sprites/HUD/health_bar.png" id="3_425tl"]
-[ext_resource type="FontFile" uid="uid://m1rs71bu264i" path="res://Fonts/ARCADE_N.TTF" id="4_1uabd"]
-
-[sub_resource type="Theme" id="Theme_60tdw"]
-default_font = ExtResource("4_1uabd")
-default_font_size = 6
+[ext_resource type="Theme" uid="uid://rshu4syu4wem" path="res://hud.tres" id="4_jdf1c"]
 
 [node name="HUD" type="CanvasLayer"]
 script = ExtResource("1_usuwy")
@@ -19,6 +15,7 @@ anchor_right = 1.0
 anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
+mouse_filter = 1
 metadata/_edit_lock_ = true
 
 [node name="HealthBar" type="TextureProgressBar" parent="HUDControl"]
@@ -38,6 +35,6 @@ offset_left = 19.0
 offset_top = 42.0
 offset_right = 64.0
 offset_bottom = 58.0
-theme = SubResource("Theme_60tdw")
+theme = ExtResource("4_jdf1c")
 text = "000"
 vertical_alignment = 1

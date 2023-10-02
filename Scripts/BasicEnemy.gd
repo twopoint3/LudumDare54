@@ -6,21 +6,37 @@ class_name BasicEnemy
 @export var can_move := false
 @export var move_wait_time = 3
 @export var enemyScore = 10
-
+@export_enum("NONE", "SIDE", "SHOOT", "CICLE") var ai_type := "NONE"
 
 @onready var area_hitbox = $HitBox
 @onready var collision_ray := $CollisionRay
-@onready var movement_timer := $MovementChanceTimer
 @onready var animation_player = $AnimationPlayer
 var timer
-var direction = Vector2.ZERO
+var tween
+var direction = Vector2(-1, -1)
 var target_position = Vector2.ZERO
 
 func _ready() -> void:
 	area_hitbox.damage = damage
-	if can_move == false:
-		movement_timer.stop()
 
+	match ai_type:
+		"NONE":
+			pass
+		"SIDE":
+			side_state()
+		"SHOOT":
+			pass
+		"CICLE":
+			pass
+func side_state():
+	await get_tree().create_timer(2).timeout
+				
+	print("123")
+	direction.y = 0
+	direction.x = -direction.x
+	move()
+
+	
 func take_damage(damage_amount):
 	currect_health -= damage_amount
 
@@ -32,15 +48,20 @@ func dealth():
 	await animation_player.animation_finished
 	queue_free()
 func move():
-	target_position.x = global_position.x + direction * 16
+	if tween != null:
+		return
 
+	print("____")
+	target_position = global_position + direction * 16
 	var tween = create_tween()
-	tween.tween_property(self, "global_position:x", target_position.x, 0.6)
+	tween.tween_property(self, "global_position", target_position, 0.6)
 	await tween.finished
 
 func _on_hurtbox_area_entered(area:Area2D) -> void:
 	take_damage(area.damage)
 	print(area.name)
+func _physics_process(delta: float) -> void:
+	pass
 
 func check_direction(direction):
 	collision_ray.target_position.x = direction * 16

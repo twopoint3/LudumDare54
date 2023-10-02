@@ -14,4 +14,4 @@ func _process(delta: float) -> void:
 func set_health_bar(value: int):
 	health_bar.value = value
 func set_score(value):
-	score_text.text = str(Globals.score).pad_zeros(3)
+	score_text.text = str(value).pad_zeros(3)

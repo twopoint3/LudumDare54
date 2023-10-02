@@ -5,6 +5,7 @@ extends Node2D
 @onready var hud := $HUD
 @onready var goal = $Environment/Goal
 @onready var scoreText:Label = $HUD/HUDControl/Score
+@export var wait_camera := 1
 
 # Called when the node enters the scene tree for the first time.
 func _ready() -> void:
@@ -13,6 +14,7 @@ func _ready() -> void:
 	Globals.connect("score_changed", hud_update_score.bind((Globals.score)))
 
 	hud_update_score(Globals.score)
+	Utilities.camera_wait_then_start(wait_camera)
 
 
 

@@ -13,7 +13,7 @@ func _ready() -> void:
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _process(delta: float) -> void:
-	if Input.is_action_just_pressed("Attack"):
+	if Input.is_action_just_pressed("Attack") and !animation_player.is_playing():
 		LevelChanger.change_level("Fade", level_1)
 func _input(event):
 	if event is InputEventKey or event is InputEventMouseButton:

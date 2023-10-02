@@ -16,3 +16,5 @@ func stop_camera():
 	camera.stop_camera_movement()
 func resume_camera_movement():
 	camera.resume_camera_movement()
+func camera_wait_then_start(time):
+	camera.wait_then_start_moving(time)

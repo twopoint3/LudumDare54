@@ -2,6 +2,7 @@ extends Camera2D
 
 @export var target = Node2D
 @export var speed = 25
+@export var starting_speed = speed
 var shake_strength = 0
 var tween:Tween
 # Called when the node enters the scene tree for the first time.
@@ -20,9 +21,15 @@ func _process(delta: float) -> void:
 func stop_camera_movement():
 	speed = 0
 func resume_camera_movement():
-	speed = 25
+	speed = starting_speed
 func _physics_process(delta: float) -> void:
-	global_position.y -= speed * delta
+	if speed > 0:
+		global_position.y -= speed * delta
+func wait_then_start_moving(time):
+	var timer = get_tree().create_timer(time)
+	await timer.timeout
+	resume_camera_movement()
+
 
 func camera_shake():
 	return Vector2(randf_range(-shake_strength, shake_strength), randf_range(-shake_strength, shake_strength))

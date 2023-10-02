@@ -1,0 +1,40 @@
+[gd_scene load_steps=3 format=3 uid="uid://bla0n8l0uwb6j"]
+
+[ext_resource type="Texture2D" uid="uid://c4cvs0r1wworo" path="res://Sprites/HUD/SpeakerOn.png" id="1_3r380"]
+[ext_resource type="Script" path="res://Scripts/MuteButton.gd" id="1_ff5w1"]
+
+[node name="Speakers" type="CanvasLayer"]
+layer = 2
+
+[node name="Control" type="Control" parent="."]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="Button" type="TextureButton" parent="Control"]
+layout_mode = 1
+anchors_preset = 1
+anchor_left = 1.0
+anchor_right = 1.0
+offset_left = -23.0
+offset_top = 6.0
+offset_right = -7.0
+offset_bottom = 22.0
+grow_horizontal = 0
+script = ExtResource("1_ff5w1")
+
+[node name="TextureRect" type="TextureRect" parent="Control/Button"]
+layout_mode = 1
+anchors_preset = 1
+anchor_left = 1.0
+anchor_right = 1.0
+offset_left = -16.0
+offset_bottom = 16.0
+grow_horizontal = 0
+texture = ExtResource("1_3r380")
+
+[connection signal="pressed" from="Control/Button" to="Control/Button" method="_on_pressed"]
+[connection signal="toggled" from="Control/Button" to="Control/Button" method="_on_toggled"]
