@@ -1,8 +1,230 @@
-[gd_scene load_steps=4 format=3 uid="uid://dqcd3n2nsorjc"]
+[gd_scene load_steps=18 format=3 uid="uid://dqcd3n2nsorjc"]
 
 [ext_resource type="Script" path="res://Scripts/final_score.gd" id="1_pr4ps"]
 [ext_resource type="Texture2D" uid="uid://qotydo0apleq" path="res://Sprites/HUD/TransitionBoxpng.png" id="1_vdyun"]
 [ext_resource type="Theme" uid="uid://rshu4syu4wem" path="res://hud.tres" id="2_pncpt"]
+[ext_resource type="Texture2D" uid="uid://c3uwffravtw57" path="res://Sprites/MainMenu/title_screen.png" id="4_qgp4i"]
+[ext_resource type="Texture2D" uid="uid://cotadbh3bvkaq" path="res://Sprites/Player/walking_froggo.png" id="4_ypbpr"]
+[ext_resource type="Texture2D" uid="uid://dqofct6me01n2" path="res://Sprites/MainMenu/sleepy_guy.png" id="5_flpmf"]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_00cmr"]
+atlas = ExtResource("5_flpmf")
+region = Rect2(0, 0, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_odrx1"]
+atlas = ExtResource("5_flpmf")
+region = Rect2(32, 0, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_eh431"]
+atlas = ExtResource("5_flpmf")
+region = Rect2(64, 0, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_3yp13"]
+atlas = ExtResource("5_flpmf")
+region = Rect2(96, 0, 32, 32)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_b23j6"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_00cmr")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_odrx1")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_eh431")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_3yp13")
+}],
+"loop": true,
+"name": &"default",
+"speed": 4.0
+}]
+
+[sub_resource type="Animation" id="Animation_sp16o"]
+resource_name = "Start"
+length = 0.4
+loop_mode = 1
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Sprite2D:frame_coords")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.1, 0.2, 0.3),
+"transitions": PackedFloat32Array(1, 1, 1, 1),
+"update": 1,
+"values": [Vector2i(0, 0), Vector2i(1, 0), Vector2i(2, 0), Vector2i(3, 0)]
+}
+
+[sub_resource type="Animation" id="Animation_i18fx"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Sprite2D:frame_coords")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [Vector2i(0, 0)]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_oet8v"]
+_data = {
+"RESET": SubResource("Animation_i18fx"),
+"Start": SubResource("Animation_sp16o")
+}
+
+[sub_resource type="Animation" id="Animation_27dnu"]
+resource_name = "Start"
+length = 5.0
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Sprite2D:position")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 3),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [Vector2(187, 119), Vector2(76, 119)]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("Sprite2D/AnimationPlayer:process_mode")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0, 3),
+"transitions": PackedFloat32Array(1, 1),
+"update": 1,
+"values": [0, 4]
+}
+tracks/2/type = "value"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath("AnimatedSprite2D:visible")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(0, 3),
+"transitions": PackedFloat32Array(1, 1),
+"update": 1,
+"values": [false, true]
+}
+tracks/3/type = "value"
+tracks/3/imported = false
+tracks/3/enabled = true
+tracks/3/path = NodePath("Sprite2D:visible")
+tracks/3/interp = 1
+tracks/3/loop_wrap = true
+tracks/3/keys = {
+"times": PackedFloat32Array(0, 3),
+"transitions": PackedFloat32Array(1, 1),
+"update": 1,
+"values": [true, false]
+}
+tracks/4/type = "value"
+tracks/4/imported = false
+tracks/4/enabled = true
+tracks/4/path = NodePath("Label2:visible")
+tracks/4/interp = 1
+tracks/4/loop_wrap = true
+tracks/4/keys = {
+"times": PackedFloat32Array(0, 3),
+"transitions": PackedFloat32Array(1, 1),
+"update": 1,
+"values": [false, true]
+}
+tracks/5/type = "value"
+tracks/5/imported = false
+tracks/5/enabled = true
+tracks/5/path = NodePath("ScoreLabel:visible")
+tracks/5/interp = 1
+tracks/5/loop_wrap = true
+tracks/5/keys = {
+"times": PackedFloat32Array(0, 3),
+"transitions": PackedFloat32Array(1, 1),
+"update": 1,
+"values": [false, true]
+}
+tracks/6/type = "value"
+tracks/6/imported = false
+tracks/6/enabled = true
+tracks/6/path = NodePath("Camera2D:position")
+tracks/6/interp = 1
+tracks/6/loop_wrap = true
+tracks/6/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector2(128, 72)]
+}
+
+[sub_resource type="Animation" id="Animation_uhawb"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Sprite2D:position")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector2(187, 119)]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("Label2:visible")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [true]
+}
+tracks/2/type = "value"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath("ScoreLabel:visible")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [true]
+}
+tracks/3/type = "value"
+tracks/3/imported = false
+tracks/3/enabled = true
+tracks/3/path = NodePath("Camera2D:position")
+tracks/3/interp = 1
+tracks/3/loop_wrap = true
+tracks/3/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector2(128, 72)]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_7unq1"]
+_data = {
+"RESET": SubResource("Animation_uhawb"),
+"Start": SubResource("Animation_27dnu")
+}
 
 [node name="FinalScore" type="Control"]
 layout_mode = 3
@@ -19,6 +241,7 @@ scale = Vector2(1.19141, 1.31944)
 texture = ExtResource("1_vdyun")
 
 [node name="ScoreLabel" type="Label" parent="."]
+z_index = 1
 layout_mode = 0
 offset_left = 96.0
 offset_top = 64.0
@@ -31,6 +254,7 @@ horizontal_alignment = 1
 vertical_alignment = 1
 
 [node name="Label2" type="Label" parent="."]
+z_index = 1
 layout_mode = 0
 offset_left = 96.0
 offset_top = 48.0
@@ -40,3 +264,34 @@ theme = ExtResource("2_pncpt")
 text = "You win!"
 horizontal_alignment = 1
 vertical_alignment = 1
+
+[node name="TitleScreen" type="Sprite2D" parent="."]
+position = Vector2(134, -97)
+texture = ExtResource("4_qgp4i")
+
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
+visible = false
+position = Vector2(79, 112)
+sprite_frames = SubResource("SpriteFrames_b23j6")
+autoplay = "default"
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+position = Vector2(187, 119)
+texture = ExtResource("4_ypbpr")
+hframes = 4
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="Sprite2D"]
+root_node = NodePath("../..")
+autoplay = "Start"
+libraries = {
+"": SubResource("AnimationLibrary_oet8v")
+}
+
+[node name="Cut" type="AnimationPlayer" parent="."]
+autoplay = "Start"
+libraries = {
+"": SubResource("AnimationLibrary_7unq1")
+}
+
+[node name="Camera2D" type="Camera2D" parent="."]
+position = Vector2(128, 72)
