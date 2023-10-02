@@ -1,0 +1,53 @@
+[gd_scene load_steps=9 format=3 uid="uid://bdsh4a24duh7h"]
+
+[ext_resource type="PackedScene" uid="uid://bkyb57xxntmyw" path="res://Scenes/World/b_enemy.tscn" id="1_fdwfu"]
+[ext_resource type="Texture2D" uid="uid://blalr0sqru1d" path="res://Sprites/Enemies/shield_enemy.png" id="2_fn376"]
+[ext_resource type="AudioStream" uid="uid://d1ppoaxeg40fj" path="res://SFX/metalhit.wav" id="3_ovb5j"]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_gkb6y"]
+atlas = ExtResource("2_fn376")
+region = Rect2(0, 0, 16, 16)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_3ma8q"]
+atlas = ExtResource("2_fn376")
+region = Rect2(16, 0, 16, 16)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_85fhj"]
+atlas = ExtResource("2_fn376")
+region = Rect2(32, 0, 16, 16)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_6hwty"]
+atlas = ExtResource("2_fn376")
+region = Rect2(48, 0, 16, 16)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_i4wmw"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_gkb6y")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_3ma8q")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_85fhj")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_6hwty")
+}],
+"loop": true,
+"name": &"default",
+"speed": 5.0
+}]
+
+[node name="SheildEnemy" instance=ExtResource("1_fdwfu")]
+currect_health = 1000
+ai_type = "NONE"
+
+[node name="Sprite2D" parent="." index="1"]
+sprite_frames = SubResource("SpriteFrames_i4wmw")
+frame_progress = 0.731754
+
+[node name="DamageSound" parent="." index="7"]
+stream = ExtResource("3_ovb5j")
+volume_db = -20.155

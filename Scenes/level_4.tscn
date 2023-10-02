@@ -1,4 +1,4 @@
-[gd_scene load_steps=18 format=3 uid="uid://dbtsphb6q46n1"]
+[gd_scene load_steps=19 format=3 uid="uid://dbtsphb6q46n1"]
 
 [ext_resource type="Script" path="res://Scripts/LevelController.gd" id="1_m7r8g"]
 [ext_resource type="PackedScene" uid="uid://b3p6imdx57ro6" path="res://Scenes/hud.tscn" id="2_145y2"]
@@ -8,6 +8,7 @@
 [ext_resource type="PackedScene" uid="uid://bpxqtmwtkyd35" path="res://Scenes/player_sword_projectile.tscn" id="6_aej04"]
 [ext_resource type="PackedScene" uid="uid://g2j3ddtylro" path="res://Scenes/World/goal.tscn" id="7_otail"]
 [ext_resource type="PackedScene" uid="uid://bfb5v4ehh5cn0" path="res://Scenes/World/ghost_enemy.tscn" id="8_137rn"]
+[ext_resource type="PackedScene" uid="uid://bbdimvx4snk3m" path="res://Scenes/level_5.tscn" id="8_kmuqu"]
 [ext_resource type="PackedScene" uid="uid://bkyb57xxntmyw" path="res://Scenes/World/b_enemy.tscn" id="9_qjm3p"]
 [ext_resource type="PackedScene" uid="uid://g1svyw1hb5ii" path="res://Scenes/World/vase2.tscn" id="10_3tf4k"]
 [ext_resource type="PackedScene" uid="uid://beevpfp4pr65t" path="res://Scenes/World/eye_enemy.tscn" id="11_o1gi0"]
@@ -54,6 +55,7 @@ position = Vector2(-32, 16)
 
 [node name="Goal" parent="Environment" instance=ExtResource("7_otail")]
 position = Vector2(0, -768)
+next_level = ExtResource("8_kmuqu")
 
 [node name="CollisionShape2D" parent="Environment/Goal" index="0"]
 position = Vector2(128, -6.5)
@@ -65,10 +67,6 @@ position = Vector2(128, -32)
 position = Vector2(96, -48)
 intervals = 2.2
 
-[node name="WallSpikeLeft2" parent="." instance=ExtResource("15_eqwdj")]
-position = Vector2(96, -64)
-intervals = 2.4
-
 [node name="WallSpikeLeft3" parent="." instance=ExtResource("15_eqwdj")]
 position = Vector2(96, -80)
 intervals = 2.6
@@ -77,10 +75,6 @@ intervals = 2.6
 position = Vector2(160, -48)
 intervals = 2.2
 
-[node name="WallSpikeLeft5" parent="." instance=ExtResource("14_e78pv")]
-position = Vector2(160, -64)
-intervals = 2.4
-
 [node name="WallSpikeLeft6" parent="." instance=ExtResource("14_e78pv")]
 position = Vector2(160, -80)
 intervals = 2.6
@@ -88,8 +82,14 @@ intervals = 2.6
 [node name="PumpkinEnemy" parent="." instance=ExtResource("12_qo0xs")]
 position = Vector2(96, -16)
 
+[node name="PumpkinEnemy6" parent="." instance=ExtResource("12_qo0xs")]
+position = Vector2(112, -128)
+
 [node name="PumpkinEnemy2" parent="." instance=ExtResource("12_qo0xs")]
 position = Vector2(144, -16)
+
+[node name="PumpkinEnemy8" parent="." instance=ExtResource("12_qo0xs")]
+position = Vector2(128, -128)
 
 [node name="EyeEnemy" parent="." instance=ExtResource("11_o1gi0")]
 position = Vector2(96, -320)
@@ -142,5 +142,23 @@ position = Vector2(128, -688)
 [node name="Vase6" parent="." instance=ExtResource("13_am4jk")]
 position = Vector2(96, -720)
 drop_chance = 1.0
+
+[node name="PumpkinEnemy4" parent="." instance=ExtResource("12_qo0xs")]
+position = Vector2(112, -192)
+
+[node name="PumpkinEnemy5" parent="." instance=ExtResource("12_qo0xs")]
+position = Vector2(128, -240)
+
+[node name="PumpkinEnemy7" parent="." instance=ExtResource("12_qo0xs")]
+position = Vector2(96, -256)
+
+[node name="EyeEnemy2" parent="." instance=ExtResource("11_o1gi0")]
+position = Vector2(112, -256)
+
+[node name="WallSpikeLeft2" parent="." instance=ExtResource("14_e78pv")]
+position = Vector2(160, -656)
+
+[node name="WallSpikeLeft5" parent="." instance=ExtResource("14_e78pv")]
+position = Vector2(160, -736)
 
 [editable path="Environment/Goal"]
