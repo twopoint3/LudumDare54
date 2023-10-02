@@ -144,3 +144,8 @@ position = Vector2(128, 16)
 [node name="Goal" parent="Environment" instance=ExtResource("13_v2rps")]
 position = Vector2(0, -736)
 next_level = ExtResource("14_idir2")
+
+[node name="Sprite2D" parent="Environment/Goal" index="2"]
+position = Vector2(128, -32)
+
+[editable path="Environment/Goal"]

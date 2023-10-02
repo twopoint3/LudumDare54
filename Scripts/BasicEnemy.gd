@@ -43,7 +43,7 @@ func shoot_state():
 	new_p.global_position = global_position
 	owner.add_child(new_p)
 
-	await get_tree().create_timer(2).timeout
+	await get_tree().create_timer(2.5).timeout
 	shoot_state()
 func cicle_state():
 	await get_tree().create_timer(2).timeout

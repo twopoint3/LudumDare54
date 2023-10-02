@@ -52,6 +52,9 @@ position = Vector2(-32, 16)
 [node name="Goal" parent="Environment" instance=ExtResource("7_rxkp1")]
 position = Vector2(0, -768)
 
+[node name="Sprite2D" parent="Environment/Goal" index="2"]
+position = Vector2(128, -32)
+
 [node name="Vase" parent="Environment" instance=ExtResource("8_pvrkv")]
 position = Vector2(112, -272)
 
@@ -148,3 +151,5 @@ position = Vector2(96, -816)
 
 [node name="Vase7" parent="Environment" instance=ExtResource("8_pvrkv")]
 position = Vector2(144, -816)
+
+[editable path="Environment/Goal"]
