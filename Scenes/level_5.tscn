@@ -1,4 +1,4 @@
-[gd_scene load_steps=14 format=3 uid="uid://bbdimvx4snk3m"]
+[gd_scene load_steps=15 format=3 uid="uid://bbdimvx4snk3m"]
 
 [ext_resource type="Script" path="res://Scripts/LevelController.gd" id="1_7uuy0"]
 [ext_resource type="PackedScene" uid="uid://b3p6imdx57ro6" path="res://Scenes/hud.tscn" id="2_vxtxe"]
@@ -8,6 +8,7 @@
 [ext_resource type="PackedScene" uid="uid://bpxqtmwtkyd35" path="res://Scenes/player_sword_projectile.tscn" id="6_2ebr5"]
 [ext_resource type="PackedScene" uid="uid://g2j3ddtylro" path="res://Scenes/World/goal.tscn" id="7_8ix5r"]
 [ext_resource type="PackedScene" uid="uid://dhj463recr3y6" path="res://Scenes/World/spider_enemy.tscn" id="8_c847a"]
+[ext_resource type="PackedScene" uid="uid://bmbcr2p02wb7l" path="res://Scenes/level_6.tscn" id="8_ojhg5"]
 [ext_resource type="PackedScene" uid="uid://2euemqco8saw" path="res://Scenes/World/pumpkin_enemy.tscn" id="12_4hv5v"]
 [ext_resource type="PackedScene" uid="uid://cge5h5gwevkk7" path="res://Scenes/World/vase.tscn" id="13_qc7fj"]
 [ext_resource type="PackedScene" uid="uid://dkmpraren5bdv" path="res://Scenes/World/wall_spike_right.tscn" id="14_2u51c"]
@@ -50,6 +51,7 @@ position = Vector2(-32, 16)
 
 [node name="Goal" parent="Environment" instance=ExtResource("7_8ix5r")]
 position = Vector2(0, -768)
+next_level = ExtResource("8_ojhg5")
 
 [node name="CollisionShape2D" parent="Environment/Goal" index="0"]
 position = Vector2(128, -6.5)

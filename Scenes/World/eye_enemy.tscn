@@ -44,3 +44,7 @@ animations = [{
 [node name="Sprite2D" parent="." index="1"]
 sprite_frames = SubResource("SpriteFrames_s6u63")
 frame_progress = 0.0
+
+[node name="VisibleOnScreenNotifier2D" parent="." index="6"]
+position = Vector2(8, 15.5)
+scale = Vector2(0.8, 1.55)
