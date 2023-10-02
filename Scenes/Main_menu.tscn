@@ -328,7 +328,7 @@ texture_repeat = 2
 position = Vector2(95, -57)
 sprite_frames = SubResource("SpriteFrames_3jshp")
 autoplay = "default"
-frame_progress = 0.600483
+frame_progress = 0.834801
 
 [node name="stars5" type="AnimatedSprite2D" parent="."]
 texture_repeat = 2

@@ -15,8 +15,7 @@ func _ready() -> void:
 func _process(delta: float) -> void:
 	if Input.is_action_just_pressed("Attack") and !animation_player.is_playing():
 		LevelChanger.change_level("Fade", level_1)
-func _unhandled_input(event):
-	if event.keycode == KEY_SPACE or event.keycode == KEY_ESCAPE:
+	if Input.is_action_just_pressed("Attack") or Input.is_action_just_pressed("Escape"):
 		skip_opening()
 func skip_opening():
 	await get_tree().process_frame
