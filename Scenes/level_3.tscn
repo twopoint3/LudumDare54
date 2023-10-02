@@ -6,7 +6,7 @@
 [ext_resource type="PackedScene" uid="uid://cottu2ef8u5u5" path="res://Scenes/player.tscn" id="4_u76gv"]
 [ext_resource type="Script" path="res://Scripts/Camera2D.gd" id="5_s57do"]
 [ext_resource type="PackedScene" uid="uid://g2j3ddtylro" path="res://Scenes/World/goal.tscn" id="7_rxkp1"]
-[ext_resource type="PackedScene" uid="uid://dbtsphb6q46n1" path="res://Scenes/level_4.tscn" id="8_jafjx"]
+[ext_resource type="PackedScene" uid="uid://by683pkmtxdwe" path="res://Scenes/level_4.tscn" id="8_jafjx"]
 [ext_resource type="PackedScene" uid="uid://cge5h5gwevkk7" path="res://Scenes/World/vase.tscn" id="8_pvrkv"]
 [ext_resource type="PackedScene" uid="uid://bfb5v4ehh5cn0" path="res://Scenes/World/ghost_enemy.tscn" id="9_ixgt8"]
 [ext_resource type="PackedScene" uid="uid://bpxqtmwtkyd35" path="res://Scenes/player_sword_projectile.tscn" id="10_04qgj"]

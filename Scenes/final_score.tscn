@@ -1,4 +1,8 @@
-[gd_scene format=3 uid="uid://dqcd3n2nsorjc"]
+[gd_scene load_steps=4 format=3 uid="uid://dqcd3n2nsorjc"]
+
+[ext_resource type="Script" path="res://Scripts/final_score.gd" id="1_pr4ps"]
+[ext_resource type="Texture2D" uid="uid://qotydo0apleq" path="res://Sprites/HUD/TransitionBoxpng.png" id="1_vdyun"]
+[ext_resource type="Theme" uid="uid://rshu4syu4wem" path="res://hud.tres" id="2_pncpt"]
 
 [node name="FinalScore" type="Control"]
 layout_mode = 3
@@ -7,3 +11,32 @@ anchor_right = 1.0
 anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
+script = ExtResource("1_pr4ps")
+
+[node name="TransitionBoxpng" type="Sprite2D" parent="."]
+position = Vector2(128.5, 72)
+scale = Vector2(1.19141, 1.31944)
+texture = ExtResource("1_vdyun")
+
+[node name="ScoreLabel" type="Label" parent="."]
+layout_mode = 0
+offset_left = 96.0
+offset_top = 64.0
+offset_right = 161.0
+offset_bottom = 81.0
+theme = ExtResource("2_pncpt")
+text = "FINAL SCORE
+"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="Label2" type="Label" parent="."]
+layout_mode = 0
+offset_left = 96.0
+offset_top = 48.0
+offset_right = 161.0
+offset_bottom = 65.0
+theme = ExtResource("2_pncpt")
+text = "You win!"
+horizontal_alignment = 1
+vertical_alignment = 1

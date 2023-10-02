@@ -90,7 +90,6 @@ func goal_state(delta):
 	global_position = global_position.lerp(target, 3 * delta)
 	var next_level = goal.next_level
 	if global_position.distance_to(target) < 0.2:
-		visible = false
 		goal.animation_player.play("End")
 		await goal.animation_player.animation_finished
 		if next_level == null:
