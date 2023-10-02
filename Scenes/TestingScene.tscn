@@ -1,4 +1,4 @@
-[gd_scene load_steps=20 format=3 uid="uid://cwfw8h2pmpkw"]
+[gd_scene load_steps=22 format=3 uid="uid://cwfw8h2pmpkw"]
 
 [ext_resource type="Script" path="res://Scripts/LevelController.gd" id="1_oa42v"]
 [ext_resource type="PackedScene" uid="uid://b3p6imdx57ro6" path="res://Scenes/hud.tscn" id="2_qnwoa"]
@@ -16,6 +16,8 @@
 [ext_resource type="PackedScene" uid="uid://bnimi4pul5hxj" path="res://Scenes/World/lazer_powerup.tscn" id="15_rbr3r"]
 [ext_resource type="PackedScene" uid="uid://cge5h5gwevkk7" path="res://Scenes/World/vase.tscn" id="15_y7cd8"]
 [ext_resource type="PackedScene" uid="uid://g2j3ddtylro" path="res://Scenes/World/goal.tscn" id="16_mnabu"]
+[ext_resource type="PackedScene" uid="uid://doknoor6jvt7" path="res://Scenes/World/wall_spike_left.tscn" id="17_vy3pn"]
+[ext_resource type="PackedScene" uid="uid://dkmpraren5bdv" path="res://Scenes/World/wall_spike_right.tscn" id="18_5i6gt"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_y3bl1"]
 size = Vector2(14, 14)
@@ -50,10 +52,7 @@ layer_1/tile_data = PackedInt32Array()
 y_sort_enabled = true
 
 [node name="bEnemy" parent="Environment/Enemies" instance=ExtResource("10_uqkem")]
-position = Vector2(96, 32)
-
-[node name="bEnemy2" parent="Environment/Enemies" instance=ExtResource("10_uqkem")]
-position = Vector2(144, 32)
+position = Vector2(144, 0)
 
 [node name="PumpkinEnemy" parent="Environment/Enemies" instance=ExtResource("13_1tc3b")]
 position = Vector2(96, 0)
@@ -65,7 +64,7 @@ position = Vector2(112, 0)
 projectile = null
 
 [node name="SpiderEnemy" parent="Environment/Enemies" instance=ExtResource("15_0b7pe")]
-position = Vector2(144, 16)
+position = Vector2(128, 0)
 projectile = null
 
 [node name="Obstacles" type="Node2D" parent="Environment"]
@@ -203,7 +202,7 @@ position = Vector2(128, -32)
 position = Vector2(144, 96)
 
 [node name="BasicCollectables" parent="." instance=ExtResource("15_rbr3r")]
-position = Vector2(192, 96)
+position = Vector2(128, 64)
 
 [node name="Camera2D" type="Camera2D" parent="."]
 position = Vector2(128, 80)
@@ -215,5 +214,11 @@ speed = 0
 
 [node name="Player" parent="Camera2D" instance=ExtResource("6_w43fy")]
 position = Vector2(-16, 24)
+
+[node name="WallSpike" parent="." instance=ExtResource("17_vy3pn")]
+position = Vector2(96, 48)
+
+[node name="WallSpikeLeft" parent="." instance=ExtResource("18_5i6gt")]
+position = Vector2(160, 48)
 
 [editable path="Environment/Goal"]

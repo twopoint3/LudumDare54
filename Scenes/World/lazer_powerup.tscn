@@ -1,11 +1,55 @@
-[gd_scene load_steps=3 format=3 uid="uid://bnimi4pul5hxj"]
+[gd_scene load_steps=9 format=3 uid="uid://bnimi4pul5hxj"]
 
 [ext_resource type="PackedScene" uid="uid://bcush4wkm6u5p" path="res://Scenes/basic_collectables.tscn" id="1_erfwa"]
 [ext_resource type="Texture2D" uid="uid://s7k5rrdhv120" path="res://Sprites/Lazer.png" id="2_fxltf"]
+[ext_resource type="Texture2D" uid="uid://dgdvi6c8yq31b" path="res://Sprites/energy_thing.png" id="3_i6dtq"]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_bmmv5"]
+atlas = ExtResource("3_i6dtq")
+region = Rect2(0, 0, 8, 8)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_a8wge"]
+atlas = ExtResource("3_i6dtq")
+region = Rect2(8, 0, 8, 8)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_fxaob"]
+atlas = ExtResource("3_i6dtq")
+region = Rect2(16, 0, 8, 8)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_h40rn"]
+atlas = ExtResource("3_i6dtq")
+region = Rect2(24, 0, 8, 8)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_7uv2f"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_bmmv5")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_a8wge")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_fxaob")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_h40rn")
+}],
+"loop": true,
+"name": &"default",
+"speed": 5.0
+}]
 
 [node name="BasicCollectables" instance=ExtResource("1_erfwa")]
 type = "Lazer"
 heal_amount = 0
 
 [node name="Sprite2D" parent="." index="0"]
+visible = false
 texture = ExtResource("2_fxltf")
+
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="." index="2"]
+position = Vector2(4, 4)
+sprite_frames = SubResource("SpriteFrames_7uv2f")
+autoplay = "default"
+centered = false

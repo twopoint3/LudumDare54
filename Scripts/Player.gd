@@ -17,6 +17,12 @@ signal health_changed
 @onready var player_center = $PlayerCenter
 @onready var hurt_box:Area2D = $HurtBox
 
+@onready var bug_sound = $BugSound
+@onready var spit_attack = $SpitAttack
+@onready var player_damage = $PlayerDamage
+@onready var lazer_sound = $LazerSound
+
+
 const tile_size = 16
 var inv = false
 var target_position = Vector2.ZERO
@@ -55,16 +61,6 @@ func _ready() -> void:
 	global_position = global_position.snapped(Vector2.ONE * tile_size)
 
 func _physics_process(delta: float) -> void:
-	#get the viewport size and divide by 2 since this is where the camera is positioned
-	if !is_died or get_viewport().get_camera_2d().speed > 0:
-		view = get_viewport_rect().size / 2
-		#get the camera position
-		camera_pos = get_viewport().get_camera_2d().global_position
-		bounds_bw = camera_pos.y - view.y
-		bounds_fw = camera_pos.y + view.y - 16
-		#after the character is moved clamp its position to the end of the camera bounds
-		global_position.y = clamp(global_position.y, bounds_bw, bounds_fw)
-
 	match currect_state:
 		states.NORMAL:
 			normal_state()
@@ -74,6 +70,16 @@ func _physics_process(delta: float) -> void:
 			pitfall_state(delta)
 		states.GOAL:
 			goal_state(delta)
+func keep_player_in_viewport():
+	if !is_died or get_viewport().get_camera_2d().speed > 0:
+		view = get_viewport_rect().size / 2
+		#get the camera position
+		camera_pos = get_viewport().get_camera_2d().global_position
+		bounds_bw = camera_pos.y - view.y
+		bounds_fw = camera_pos.y + view.y - 16
+		#after the character is moved clamp its position to the end of the camera bounds
+		global_position.y = clamp(global_position.y, bounds_bw, bounds_fw)
+
 func goal_state(delta):
 	if visible == false:
 		return
@@ -113,6 +119,7 @@ func pitfall_state(delta):
 	
 	
 func normal_state():
+	keep_player_in_viewport()
 	get_inputs()
 	if Input.is_action_just_pressed("Attack") and animation_player.is_playing():
 		sword_animation_player.play("SwordAttack")
@@ -120,6 +127,7 @@ func normal_state():
 		move()
 
 func lazer_state():
+	keep_player_in_viewport()
 	get_inputs()
 	if input_direction != Vector2.ZERO and !is_moving:
 		move()
@@ -176,8 +184,10 @@ func _on_hurtbox_area_entered(area: Area2D) -> void:
 			match type:
 				"Heal":
 					currect_health += area.heal_amount
+					bug_sound.play()
 				"Lazer":
 					currect_state = states.LAZER
+					lazer_sound.play()
 					print_debug("player got the lazer power up!")
 				"None":
 					pass
@@ -193,7 +203,7 @@ func take_damage(damage_amount):
 	if inv == true:
 		return
 	currect_health -= damage_amount
-	
+	player_damage.play()
 	if currect_health <= 0:
 		death()
 		return
@@ -213,6 +223,7 @@ func spawn_sword_projectile():
 	Utilities.shake_camera(0.3)
 	await sword_animation_player.animation_finished
 	var new_projectile = sword_projectile.instantiate()
+	spit_attack.play()
 	await get_tree().physics_frame
 	new_projectile.global_position = sword.global_position
 	owner.add_child(new_projectile)
@@ -224,12 +235,6 @@ func _on_hurt_box_body_entered(body: Node2D) -> void:
 		var map_position = layer.local_to_map(local_position)
 		var local_tile_center = layer.map_to_local(map_position)
 		global_tile_center = to_global(local_tile_center)
-		var tile_id = layer.get_cell_source_id(0, map_position, true)
-
-
-		print("-  " + str(global_tile_center))
-		#tile_position = layer.map_to_local(local_position)
-		#print(tile_position.snapped(Vector2.ONE * tile_size))
 		currect_state = states.PITFALL
 func disable_player():
 	pass

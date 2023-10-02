@@ -2,7 +2,7 @@
 
 [ext_resource type="Script" path="res://Scripts/MainMenu.gd" id="1_ylo06"]
 [ext_resource type="Texture2D" uid="uid://qotydo0apleq" path="res://Sprites/HUD/TransitionBoxpng.png" id="2_2i874"]
-[ext_resource type="AudioStream" uid="uid://db1e41843c8l0" path="res://Music/title_theme.mp3" id="2_ma8tm"]
+[ext_resource type="AudioStream" uid="uid://de3whp7b6jwmn" path="res://Music/title_theme_pitched.mp3" id="2_5e4l8"]
 [ext_resource type="Texture2D" uid="uid://d3gypl22b8xkl" path="res://Sprites/MainMenu/logo.png" id="3_4ab33"]
 [ext_resource type="Texture2D" uid="uid://c3uwffravtw57" path="res://Sprites/MainMenu/title_screen.png" id="4_36s4f"]
 [ext_resource type="Texture2D" uid="uid://dqofct6me01n2" path="res://Sprites/MainMenu/sleepy_guy.png" id="5_201yy"]
@@ -224,7 +224,7 @@ anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
 script = ExtResource("1_ylo06")
-music = ExtResource("2_ma8tm")
+music = ExtResource("2_5e4l8")
 
 [node name="Menu" type="Label" parent="."]
 layout_mode = 1

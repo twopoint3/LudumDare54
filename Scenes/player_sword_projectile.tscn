@@ -1,10 +1,32 @@
-[gd_scene load_steps=4 format=3 uid="uid://bpxqtmwtkyd35"]
+[gd_scene load_steps=7 format=3 uid="uid://bpxqtmwtkyd35"]
 
 [ext_resource type="Script" path="res://Scripts/SwordProjectile.gd" id="1_gknyb"]
-[ext_resource type="Texture2D" uid="uid://biih7mb171tgy" path="res://Sprites/Player/SwordProjectile.png" id="2_04qkm"]
+[ext_resource type="Texture2D" uid="uid://byhfvmqq2f50r" path="res://Sprites/Projectiles/fly.png" id="2_4u4eg"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_vs8he"]
-size = Vector2(10, 14.875)
+size = Vector2(12, 5.71875)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_0q8vt"]
+atlas = ExtResource("2_4u4eg")
+region = Rect2(0, 0, 10, 5)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_ffkis"]
+atlas = ExtResource("2_4u4eg")
+region = Rect2(10, 0, 10, 5)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_jap12"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_0q8vt")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_ffkis")
+}],
+"loop": true,
+"name": &"default",
+"speed": 5.0
+}]
 
 [node name="SwordProjectile" type="Area2D"]
 collision_layer = 2
@@ -13,15 +35,18 @@ script = ExtResource("1_gknyb")
 metadata/_edit_group_ = true
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
-position = Vector2(8, 10)
+position = Vector2(8, 6.85937)
 shape = SubResource("RectangleShape2D_vs8he")
 
-[node name="Sprite2D" type="Sprite2D" parent="."]
-texture = ExtResource("2_04qkm")
+[node name="Sprite2D" type="AnimatedSprite2D" parent="."]
+position = Vector2(3, 5)
+sprite_frames = SubResource("SpriteFrames_jap12")
+autoplay = "default"
+frame_progress = 0.0373114
 centered = false
 
 [node name="VisibleOnScreenNotifier2D" type="VisibleOnScreenNotifier2D" parent="."]
-position = Vector2(8, 8.5)
-scale = Vector2(0.8, 0.65)
+position = Vector2(8, 6.5)
+scale = Vector2(0.8, 0.45)
 
 [connection signal="screen_exited" from="VisibleOnScreenNotifier2D" to="." method="_on_visible_on_screen_notifier_2d_screen_exited"]

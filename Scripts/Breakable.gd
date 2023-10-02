@@ -3,11 +3,13 @@ extends Area2D
 @export var health = 1
 @export var item_dropped:Array[PackedScene] = []
 @export var drop_chance = 1.0
-
+@export var score = 5
 @onready var animation_player = $AnimationPlayer
+@onready var pot_break = $PotBreak
 
 func _on_area_entered(area:Area2D) -> void:
 	health -= area.damage
+	pot_break.play()
 
 	if health <= 0:
 		death()
@@ -28,6 +30,7 @@ func chance():
 		return false
 
 func death():
+	Globals.score += score
 	animation_player.play("Death")
 	await animation_player.animation_finished
 	if chance():

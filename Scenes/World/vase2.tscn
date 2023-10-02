@@ -1,9 +1,10 @@
-[gd_scene load_steps=11 format=3 uid="uid://g1svyw1hb5ii"]
+[gd_scene load_steps=12 format=3 uid="uid://g1svyw1hb5ii"]
 
 [ext_resource type="Script" path="res://Scripts/Breakable.gd" id="1_4lsfj"]
 [ext_resource type="PackedScene" uid="uid://dx11lmn8en8a3" path="res://Scenes/World/golden_bug.tscn" id="2_wc01q"]
 [ext_resource type="Texture2D" uid="uid://cm1vvfao00lwu" path="res://Sprites/Tiles/pots.png" id="3_kwxfn"]
 [ext_resource type="Script" path="res://Scripts/EnemyHitbox.gd" id="4_m7yvx"]
+[ext_resource type="AudioStream" uid="uid://bdalewb7sneoy" path="res://SFX/pot break.wav" id="5_u1gcr"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_fdu4b"]
 size = Vector2(16, 16)
@@ -88,5 +89,8 @@ debug_color = Color(0.701961, 0, 0.0117647, 0.419608)
 [node name="CollisionShape2D" type="CollisionShape2D" parent="StaticBody2D"]
 position = Vector2(8, 8)
 shape = SubResource("RectangleShape2D_kki8y")
+
+[node name="PotBreak" type="AudioStreamPlayer" parent="."]
+stream = ExtResource("5_u1gcr")
 
 [connection signal="area_entered" from="." to="." method="_on_area_entered"]

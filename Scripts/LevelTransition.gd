@@ -13,4 +13,5 @@ func change_level(transition_type:String, level_pack:PackedScene):
 func restart_level(transition_type:String):
 	animation_player.play(transition_type)
 	await half_way
+	Globals.set_score_back_to_start()
 	get_tree().reload_current_scene()

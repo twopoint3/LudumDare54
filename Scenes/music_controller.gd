@@ -11,6 +11,10 @@ func musicOn():
 	AudioServer.set_bus_volume_db(AudioServer.get_bus_index("Master"), linear_to_db(volume))
 
 func play_music(track:AudioStreamMP3):
+	if track == null:
+		print_debug("music not set")
+		return
+
 	if music.playing:
 		music.stop()
 	music.stream = track

@@ -1,9 +1,13 @@
-[gd_scene load_steps=18 format=3 uid="uid://cottu2ef8u5u5"]
+[gd_scene load_steps=22 format=3 uid="uid://cottu2ef8u5u5"]
 
 [ext_resource type="Script" path="res://Scripts/Player.gd" id="1_n04gd"]
 [ext_resource type="Script" path="res://Scripts/SwordHitBox.gd" id="2_tvsp4"]
 [ext_resource type="Texture2D" uid="uid://5jw7xpb0u1h" path="res://Sprites/Player/Sword.png" id="3_fcye7"]
 [ext_resource type="Texture2D" uid="uid://8u87831vlj84" path="res://Sprites/Player/frogman_spritesheet.png" id="4_03kl0"]
+[ext_resource type="AudioStream" uid="uid://cf2ukg41ra75o" path="res://SFX/pick up bug.wav" id="5_mcwkm"]
+[ext_resource type="AudioStream" uid="uid://d16om0bp206kd" path="res://SFX/spit_attack.wav" id="5_nnora"]
+[ext_resource type="AudioStream" uid="uid://b0kbhynrvbt6u" path="res://SFX/player damage.wav" id="5_p14w8"]
+[ext_resource type="AudioStream" uid="uid://csqyoybq1q4l0" path="res://SFX/giga_lazer.mp3" id="7_cagud"]
 
 [sub_resource type="Animation" id="Animation_wg0gi"]
 length = 0.001
@@ -55,10 +59,10 @@ tracks/0/path = NodePath("SwordHitBox:position")
 tracks/0/interp = 1
 tracks/0/loop_wrap = true
 tracks/0/keys = {
-"times": PackedFloat32Array(0, 0.05, 0.1, 0.15),
-"transitions": PackedFloat32Array(1, 1, 1, 1),
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
 "update": 1,
-"values": [Vector2(0, 0), Vector2(0, -6), Vector2(0, -10), Vector2(0, -16)]
+"values": [Vector2(0, 0)]
 }
 tracks/1/type = "method"
 tracks/1/imported = false
@@ -81,10 +85,10 @@ tracks/2/path = NodePath("SwordHitBox:visible")
 tracks/2/interp = 1
 tracks/2/loop_wrap = true
 tracks/2/keys = {
-"times": PackedFloat32Array(0, 0.25),
-"transitions": PackedFloat32Array(1, 1),
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
 "update": 1,
-"values": [true, false]
+"values": [false]
 }
 tracks/3/type = "value"
 tracks/3/imported = false
@@ -93,10 +97,10 @@ tracks/3/path = NodePath("SwordHitBox/SwordCollisionShape2D:disabled")
 tracks/3/interp = 1
 tracks/3/loop_wrap = true
 tracks/3/keys = {
-"times": PackedFloat32Array(0, 0.2),
-"transitions": PackedFloat32Array(1, 1),
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
 "update": 1,
-"values": [false, true]
+"values": [false]
 }
 
 [sub_resource type="AnimationLibrary" id="AnimationLibrary_e0xfg"]
@@ -331,6 +335,18 @@ libraries = {
 libraries = {
 "": SubResource("AnimationLibrary_a2c54")
 }
+
+[node name="BugSound" type="AudioStreamPlayer" parent="."]
+stream = ExtResource("5_mcwkm")
+
+[node name="SpitAttack" type="AudioStreamPlayer" parent="."]
+stream = ExtResource("5_nnora")
+
+[node name="PlayerDamage" type="AudioStreamPlayer" parent="."]
+stream = ExtResource("5_p14w8")
+
+[node name="LazerSound" type="AudioStreamPlayer" parent="."]
+stream = ExtResource("7_cagud")
 
 [connection signal="area_entered" from="HurtBox" to="." method="_on_hurtbox_area_entered"]
 [connection signal="body_entered" from="HurtBox" to="." method="_on_hurt_box_body_entered"]

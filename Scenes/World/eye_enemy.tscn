@@ -1,0 +1,46 @@
+[gd_scene load_steps=8 format=3 uid="uid://beevpfp4pr65t"]
+
+[ext_resource type="PackedScene" uid="uid://bkyb57xxntmyw" path="res://Scenes/World/b_enemy.tscn" id="1_2kbsg"]
+[ext_resource type="Texture2D" uid="uid://dpmcadwe03es" path="res://Sprites/Enemies/eyeball.png" id="2_ti63f"]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_642hp"]
+atlas = ExtResource("2_ti63f")
+region = Rect2(0, 0, 16, 16)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_yust0"]
+atlas = ExtResource("2_ti63f")
+region = Rect2(16, 0, 16, 16)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_gj0mp"]
+atlas = ExtResource("2_ti63f")
+region = Rect2(32, 0, 16, 16)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_u4x7x"]
+atlas = ExtResource("2_ti63f")
+region = Rect2(48, 0, 16, 16)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_s6u63"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_642hp")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_yust0")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_gj0mp")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_u4x7x")
+}],
+"loop": true,
+"name": &"default",
+"speed": 5.0
+}]
+
+[node name="EyeEnemy" instance=ExtResource("1_2kbsg")]
+
+[node name="Sprite2D" parent="." index="1"]
+sprite_frames = SubResource("SpriteFrames_s6u63")
+frame_progress = 0.0

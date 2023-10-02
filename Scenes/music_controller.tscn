@@ -8,4 +8,3 @@ script = ExtResource("1_qq8uj")
 
 [node name="Musicbox" type="AudioStreamPlayer" parent="."]
 stream = ExtResource("2_wi2ph")
-pitch_scale = 1.15
