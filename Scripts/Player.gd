@@ -93,8 +93,7 @@ func goal_state(delta):
 		goal.animation_player.play("End")
 		await goal.animation_player.animation_finished
 		if next_level == null:
-			var main = load("res://Scenes/Main_menu.tscn")
-			LevelChanger.change_level("Fade", main)
+			return
 		else:
 			LevelChanger.change_level("Fade", next_level)
 func pitfall_state(delta):

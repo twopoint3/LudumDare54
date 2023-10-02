@@ -1,4 +1,4 @@
-[gd_scene load_steps=23 format=3 uid="uid://bql6fam0suwjy"]
+[gd_scene load_steps=24 format=3 uid="uid://bql6fam0suwjy"]
 
 [ext_resource type="Script" path="res://Scripts/MainMenu.gd" id="1_ylo06"]
 [ext_resource type="Texture2D" uid="uid://qotydo0apleq" path="res://Sprites/HUD/TransitionBoxpng.png" id="2_2i874"]
@@ -9,6 +9,7 @@
 [ext_resource type="Texture2D" uid="uid://defotw631h0un" path="res://Sprites/HUD/WhiteBox.png" id="6_3drh6"]
 [ext_resource type="Theme" uid="uid://rshu4syu4wem" path="res://hud.tres" id="6_estm4"]
 [ext_resource type="Texture2D" uid="uid://ksguxfd87afa" path="res://Sprites/MainMenu/stars.png" id="8_r6i0w"]
+[ext_resource type="PackedScene" uid="uid://3jo61mhc6gpi" path="res://Scenes/lazer_projectile.tscn" id="10_6njtx"]
 
 [sub_resource type="Animation" id="Animation_fo2k1"]
 resource_name = "Opening"
@@ -402,3 +403,6 @@ scale = Vector2(0.953125, 0.953125)
 sprite_frames = SubResource("SpriteFrames_3jshp")
 autoplay = "default"
 frame_progress = 0.790338
+
+[node name="LazerProjectile" parent="." instance=ExtResource("10_6njtx")]
+position = Vector2(-130, 138)

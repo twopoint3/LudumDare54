@@ -1,4 +1,4 @@
-[gd_scene load_steps=18 format=3 uid="uid://bmbcr2p02wb7l"]
+[gd_scene load_steps=19 format=3 uid="uid://bmbcr2p02wb7l"]
 
 [ext_resource type="Script" path="res://Scripts/LevelController.gd" id="1_xff7h"]
 [ext_resource type="PackedScene" uid="uid://b3p6imdx57ro6" path="res://Scenes/hud.tscn" id="2_l23f2"]
@@ -7,6 +7,7 @@
 [ext_resource type="Script" path="res://Scripts/Camera2D.gd" id="5_130hf"]
 [ext_resource type="PackedScene" uid="uid://bpxqtmwtkyd35" path="res://Scenes/player_sword_projectile.tscn" id="6_uculy"]
 [ext_resource type="PackedScene" uid="uid://g2j3ddtylro" path="res://Scenes/World/goal.tscn" id="7_a7pcc"]
+[ext_resource type="PackedScene" uid="uid://b488tmguxwapl" path="res://Scenes/level_7.tscn" id="8_m74fj"]
 [ext_resource type="PackedScene" uid="uid://doknoor6jvt7" path="res://Scenes/World/wall_spike_left.tscn" id="8_n2ffg"]
 [ext_resource type="PackedScene" uid="uid://dkmpraren5bdv" path="res://Scenes/World/wall_spike_right.tscn" id="9_yqop7"]
 [ext_resource type="PackedScene" uid="uid://g1svyw1hb5ii" path="res://Scenes/World/vase2.tscn" id="10_pbmgl"]
@@ -54,6 +55,7 @@ position = Vector2(-32, 16)
 
 [node name="Goal" parent="Environment" instance=ExtResource("7_a7pcc")]
 position = Vector2(0, -768)
+next_level = ExtResource("8_m74fj")
 
 [node name="CollisionShape2D" parent="Environment/Goal" index="0"]
 position = Vector2(128, -6.5)
