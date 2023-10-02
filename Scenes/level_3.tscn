@@ -123,28 +123,31 @@ position = Vector2(144, -816)
 
 [node name="WallSpikeLeft" parent="." instance=ExtResource("15_1vayr")]
 position = Vector2(160, -608)
+intervals = 2.0
 
 [node name="WallSpikeLeft2" parent="." instance=ExtResource("16_brwum")]
 position = Vector2(96, -48)
+intervals = 2.0
 
 [node name="WallSpikeLeft2" parent="WallSpikeLeft2" instance=ExtResource("16_brwum")]
 position = Vector2(0, -112)
-intervals = 3
+intervals = 2.0
 
 [node name="WallSpikeLeft3" parent="WallSpikeLeft2" instance=ExtResource("16_brwum")]
 position = Vector2(0, -128)
-intervals = 3
+intervals = 2.0
 
 [node name="WallSpikeLeft3" parent="." instance=ExtResource("15_1vayr")]
 position = Vector2(160, -176)
-intervals = 3
+intervals = 2.0
 
 [node name="WallSpikeLeft4" parent="." instance=ExtResource("15_1vayr")]
 position = Vector2(160, -160)
-intervals = 3
+intervals = 2.0
 
 [node name="WallSpikeLeft5" parent="." instance=ExtResource("15_1vayr")]
 position = Vector2(160, -48)
+intervals = 2.0
 
 [node name="Vase" parent="." instance=ExtResource("8_pvrkv")]
 position = Vector2(96, -304)

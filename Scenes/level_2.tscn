@@ -150,7 +150,7 @@ next_level = ExtResource("14_idir2")
 position = Vector2(128, -11)
 
 [node name="Sprite2D" parent="Environment/Goal" index="2"]
-position = Vector2(128, -32)
+position = Vector2(128, -27)
 
 [node name="GhostEnemy" parent="." instance=ExtResource("16_4ek7c")]
 position = Vector2(112, -544)
