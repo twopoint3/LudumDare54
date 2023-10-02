@@ -9,6 +9,7 @@ extends Node2D
 
 # Called when the node enters the scene tree for the first time.
 func _ready() -> void:
+	MusicController.stop_music()
 	player.connect("health_changed", player_health_changed)
 	goal.connect("player_reached_goal", player_reached_end)
 	Globals.connect("score_changed", hud_update_score.bind((Globals.score)))

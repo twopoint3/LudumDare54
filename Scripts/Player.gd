@@ -95,21 +95,20 @@ func goal_state(delta):
 func pitfall_state(delta):
 	if tween:
 		tween.kill()
-	if !is_died:
+	if global_position.distance_to(player_center.global_position) > 0.01:
 		player_center.global_position = (global_tile_center + Vector2(-8, -8)).snapped(Vector2.ONE * tile_size)
-
+		is_died = true
 		global_position = global_position.lerp(player_center.global_position, 6 * delta)
 		Utilities.stop_camera()
-
-		if global_position.distance_to(player_center.global_position) < 0.01 :
+	else:
+		if animation_player.current_animation != "fall_in" and is_died:
 			global_position.snapped(Vector2.ONE * tile_size)
 			animation_player.play("fall_in")
 			await animation_player.animation_finished
-			is_died = true
+			visible = false
+			is_died = false
 			currect_health = 0
 			LevelChanger.restart_level("Fade")
-		
-		return
 		
 	
 	

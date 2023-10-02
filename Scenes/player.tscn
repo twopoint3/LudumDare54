@@ -271,8 +271,8 @@ _data = {
 [node name="Player" type="CharacterBody2D" groups=["Player"]]
 y_sort_enabled = true
 script = ExtResource("1_n04gd")
-movement_speed = 0.16
-wait_before_move = 0.03
+movement_speed = 0.12
+wait_before_move = 0.07
 
 [node name="SwordHitBox" type="Area2D" parent="."]
 visible = false

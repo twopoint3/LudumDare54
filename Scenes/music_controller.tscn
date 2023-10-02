@@ -1,6 +1,11 @@
-[gd_scene load_steps=2 format=3 uid="uid://brsc1ybrlh3ig"]
+[gd_scene load_steps=3 format=3 uid="uid://brsc1ybrlh3ig"]
 
 [ext_resource type="Script" path="res://Scenes/music_controller.gd" id="1_qq8uj"]
+[ext_resource type="AudioStream" uid="uid://db1e41843c8l0" path="res://Music/title_theme.mp3" id="2_wi2ph"]
 
 [node name="MusicController" type="Node"]
 script = ExtResource("1_qq8uj")
+
+[node name="Musicbox" type="AudioStreamPlayer" parent="."]
+stream = ExtResource("2_wi2ph")
+pitch_scale = 1.15

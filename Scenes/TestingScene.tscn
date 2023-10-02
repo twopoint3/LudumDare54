@@ -215,6 +215,5 @@ speed = 0
 
 [node name="Player" parent="Camera2D" instance=ExtResource("6_w43fy")]
 position = Vector2(-16, 24)
-movement_speed = 0.14
 
 [editable path="Environment/Goal"]
