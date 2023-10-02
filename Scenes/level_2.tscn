@@ -142,8 +142,11 @@ position = Vector2(128, -656)
 position = Vector2(128, 16)
 
 [node name="Goal" parent="Environment" instance=ExtResource("13_v2rps")]
-position = Vector2(0, -736)
+position = Vector2(0, -741)
 next_level = ExtResource("14_idir2")
+
+[node name="FrontOfDoor" parent="Environment/Goal" index="1"]
+position = Vector2(128, -11)
 
 [node name="Sprite2D" parent="Environment/Goal" index="2"]
 position = Vector2(128, -32)
