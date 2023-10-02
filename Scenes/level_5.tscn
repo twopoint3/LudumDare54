@@ -206,74 +206,74 @@ position = Vector2(128, -528)
 
 [node name="EnemyEnergyBallProjectile5" parent="." instance=ExtResource("15_uawp4")]
 position = Vector2(96, -624)
-speed = 75
+speed = 60
 
 [node name="EnemyEnergyBallProjectile6" parent="." instance=ExtResource("15_uawp4")]
 position = Vector2(112, -624)
-speed = 75
+speed = 60
 
 [node name="EnemyEnergyBallProjectile7" parent="." instance=ExtResource("15_uawp4")]
 position = Vector2(128, -624)
-speed = 75
+speed = 60
 
 [node name="EnemyEnergyBallProjectile8" parent="." instance=ExtResource("15_uawp4")]
 position = Vector2(112, -656)
-speed = 75
+speed = 60
 
 [node name="EnemyEnergyBallProjectile9" parent="." instance=ExtResource("15_uawp4")]
 position = Vector2(128, -656)
-speed = 75
+speed = 60
 
 [node name="EnemyEnergyBallProjectile10" parent="." instance=ExtResource("15_uawp4")]
 position = Vector2(144, -656)
-speed = 75
+speed = 60
 
 [node name="EnemyEnergyBallProjectile11" parent="." instance=ExtResource("15_uawp4")]
 position = Vector2(96, -688)
-speed = 75
+speed = 60
 
 [node name="EnemyEnergyBallProjectile12" parent="." instance=ExtResource("15_uawp4")]
 position = Vector2(112, -688)
-speed = 75
+speed = 60
 
 [node name="EnemyEnergyBallProjectile13" parent="." instance=ExtResource("15_uawp4")]
 position = Vector2(128, -688)
-speed = 75
+speed = 60
 
 [node name="EnemyEnergyBallProjectile14" parent="." instance=ExtResource("15_uawp4")]
 position = Vector2(112, -720)
-speed = 75
+speed = 60
 
 [node name="EnemyEnergyBallProjectile15" parent="." instance=ExtResource("15_uawp4")]
 position = Vector2(128, -720)
-speed = 75
+speed = 60
 
 [node name="EnemyEnergyBallProjectile16" parent="." instance=ExtResource("15_uawp4")]
 position = Vector2(144, -720)
-speed = 75
+speed = 60
 
 [node name="EnemyEnergyBallProjectile17" parent="." instance=ExtResource("15_uawp4")]
 position = Vector2(96, -752)
-speed = 75
+speed = 60
 
 [node name="EnemyEnergyBallProjectile18" parent="." instance=ExtResource("15_uawp4")]
 position = Vector2(112, -752)
-speed = 75
+speed = 60
 
 [node name="EnemyEnergyBallProjectile19" parent="." instance=ExtResource("15_uawp4")]
 position = Vector2(128, -752)
-speed = 75
+speed = 60
 
 [node name="EnemyEnergyBallProjectile20" parent="." instance=ExtResource("15_uawp4")]
 position = Vector2(112, -784)
-speed = 75
+speed = 60
 
 [node name="EnemyEnergyBallProjectile21" parent="." instance=ExtResource("15_uawp4")]
 position = Vector2(128, -784)
-speed = 75
+speed = 60
 
 [node name="EnemyEnergyBallProjectile22" parent="." instance=ExtResource("15_uawp4")]
 position = Vector2(144, -784)
-speed = 75
+speed = 60
 
 [editable path="Environment/Goal"]
