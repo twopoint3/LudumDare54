@@ -1,7 +1,7 @@
 extends Node2D
 
 @export var time_extended = 2
-@export var intervals = 1
+@export var intervals:float = 2.0
 
 @onready var timer = $Timer
 @onready var animation_player: AnimationPlayer = $AnimationPlayer
