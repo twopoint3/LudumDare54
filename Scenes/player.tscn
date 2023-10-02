@@ -1,4 +1,4 @@
-[gd_scene load_steps=15 format=3 uid="uid://cottu2ef8u5u5"]
+[gd_scene load_steps=18 format=3 uid="uid://cottu2ef8u5u5"]
 
 [ext_resource type="Script" path="res://Scripts/Player.gd" id="1_n04gd"]
 [ext_resource type="Script" path="res://Scripts/SwordHitBox.gd" id="2_tvsp4"]
@@ -106,7 +106,7 @@ _data = {
 }
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_0odcg"]
-size = Vector2(10, 15)
+size = Vector2(10, 12)
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_uppyj"]
 radius = 8.0
@@ -231,6 +231,43 @@ _data = {
 "walk": SubResource("Animation_qg28v")
 }
 
+[sub_resource type="Animation" id="Animation_cwe0s"]
+resource_name = "Blink"
+length = 0.5
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Sprite2D:visible")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.1, 0.2, 0.3, 0.4),
+"transitions": PackedFloat32Array(1, 1, 1, 1, 1),
+"update": 1,
+"values": [true, false, true, false, true]
+}
+
+[sub_resource type="Animation" id="Animation_j0ukf"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Sprite2D:visible")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [true]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_a2c54"]
+_data = {
+"Blink": SubResource("Animation_cwe0s"),
+"RESET": SubResource("Animation_j0ukf")
+}
+
 [node name="Player" type="CharacterBody2D" groups=["Player"]]
 y_sort_enabled = true
 script = ExtResource("1_n04gd")
@@ -254,7 +291,7 @@ libraries = {
 }
 
 [node name="SwordCollisionShape2D" type="CollisionShape2D" parent="SwordHitBox"]
-position = Vector2(8, 8.5)
+position = Vector2(8, 7)
 shape = SubResource("RectangleShape2D_0odcg")
 disabled = true
 
@@ -288,6 +325,11 @@ gizmo_extents = 18.6
 autoplay = "walk"
 libraries = {
 "": SubResource("AnimationLibrary_y8bh0")
+}
+
+[node name="Effects" type="AnimationPlayer" parent="."]
+libraries = {
+"": SubResource("AnimationLibrary_a2c54")
 }
 
 [connection signal="area_entered" from="HurtBox" to="." method="_on_hurtbox_area_entered"]

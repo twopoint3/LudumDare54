@@ -9,16 +9,14 @@
 [ext_resource type="PackedScene" uid="uid://vpnvhqjhqh0f" path="res://Scenes/World/wall.tscn" id="7_bsuna"]
 [ext_resource type="PackedScene" uid="uid://bpxqtmwtkyd35" path="res://Scenes/player_sword_projectile.tscn" id="10_m6130"]
 [ext_resource type="PackedScene" uid="uid://bkyb57xxntmyw" path="res://Scenes/World/b_enemy.tscn" id="13_5ap41"]
-[ext_resource type="Script" path="res://Scripts/Goal.gd" id="14_lx8kc"]
+[ext_resource type="PackedScene" uid="uid://g2j3ddtylro" path="res://Scenes/World/goal.tscn" id="13_v2rps"]
+[ext_resource type="PackedScene" uid="uid://cxyxrl48p30rk" path="res://Scenes/level_3.tscn" id="14_idir2"]
 [ext_resource type="PackedScene" uid="uid://cge5h5gwevkk7" path="res://Scenes/World/vase.tscn" id="15_dr5w6"]
 [ext_resource type="PackedScene" uid="uid://bfb5v4ehh5cn0" path="res://Scenes/World/ghost_enemy.tscn" id="16_4ek7c"]
 [ext_resource type="PackedScene" uid="uid://g1svyw1hb5ii" path="res://Scenes/World/vase2.tscn" id="16_wu768"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_0ud8w"]
 size = Vector2(32, 32)
-
-[sub_resource type="RectangleShape2D" id="RectangleShape2D_mied5"]
-size = Vector2(256, 16)
 
 [node name="Level2" type="Node2D"]
 script = ExtResource("1_toivj")
@@ -71,89 +69,78 @@ shape = SubResource("RectangleShape2D_0ud8w")
 [node name="SwordProjectile" parent="Environment" instance=ExtResource("10_m6130")]
 position = Vector2(-64, 32)
 
-[node name="Goal" type="Area2D" parent="Environment"]
-position = Vector2(-32, -768)
-collision_layer = 0
-collision_mask = 4
-script = ExtResource("14_lx8kc")
-metadata/_edit_group_ = true
-
-[node name="CollisionShape2D" type="CollisionShape2D" parent="Environment/Goal"]
-position = Vector2(128, 0)
-shape = SubResource("RectangleShape2D_mied5")
-debug_color = Color(0, 0.701961, 0.0431373, 0.419608)
-metadata/_edit_group_ = true
-
-[node name="bEnemy" parent="." instance=ExtResource("13_5ap41")]
+[node name="bEnemy" parent="Environment" instance=ExtResource("13_5ap41")]
 position = Vector2(112, -32)
 
-[node name="Vase" parent="." instance=ExtResource("15_dr5w6")]
+[node name="Vase" parent="Environment" instance=ExtResource("15_dr5w6")]
 position = Vector2(144, -768)
 
-[node name="Vase2" parent="." instance=ExtResource("15_dr5w6")]
+[node name="Vase2" parent="Environment" instance=ExtResource("15_dr5w6")]
 position = Vector2(96, -768)
 
-[node name="Vase3" parent="." instance=ExtResource("16_wu768")]
+[node name="Vase3" parent="Environment" instance=ExtResource("16_wu768")]
 position = Vector2(144, -784)
 
-[node name="Vase4" parent="." instance=ExtResource("16_wu768")]
+[node name="Vase4" parent="Environment" instance=ExtResource("16_wu768")]
 position = Vector2(144, -544)
 
-[node name="Vase5" parent="." instance=ExtResource("15_dr5w6")]
+[node name="Vase5" parent="Environment" instance=ExtResource("15_dr5w6")]
 position = Vector2(112, -320)
 
-[node name="Vase6" parent="." instance=ExtResource("15_dr5w6")]
+[node name="Vase6" parent="Environment" instance=ExtResource("15_dr5w6")]
 position = Vector2(128, -336)
 
-[node name="Vase7" parent="." instance=ExtResource("16_wu768")]
+[node name="Vase7" parent="Environment" instance=ExtResource("16_wu768")]
 position = Vector2(128, -384)
 
-[node name="GhostEnemy" parent="." instance=ExtResource("16_4ek7c")]
+[node name="GhostEnemy" parent="Environment" instance=ExtResource("16_4ek7c")]
 position = Vector2(144, -96)
 
-[node name="GhostEnemy2" parent="." instance=ExtResource("16_4ek7c")]
+[node name="GhostEnemy2" parent="Environment" instance=ExtResource("16_4ek7c")]
 position = Vector2(128, -128)
 
-[node name="bEnemy2" parent="." instance=ExtResource("13_5ap41")]
+[node name="bEnemy2" parent="Environment" instance=ExtResource("13_5ap41")]
 position = Vector2(96, -176)
 
-[node name="bEnemy3" parent="." instance=ExtResource("13_5ap41")]
+[node name="bEnemy3" parent="Environment" instance=ExtResource("13_5ap41")]
 position = Vector2(96, -160)
 
-[node name="bEnemy4" parent="." instance=ExtResource("13_5ap41")]
+[node name="bEnemy4" parent="Environment" instance=ExtResource("13_5ap41")]
 position = Vector2(144, -272)
 
-[node name="GhostEnemy3" parent="." instance=ExtResource("16_4ek7c")]
+[node name="GhostEnemy3" parent="Environment" instance=ExtResource("16_4ek7c")]
 position = Vector2(112, -240)
 
-[node name="GhostEnemy4" parent="." instance=ExtResource("16_4ek7c")]
+[node name="GhostEnemy4" parent="Environment" instance=ExtResource("16_4ek7c")]
 position = Vector2(112, -368)
 
-[node name="GhostEnemy5" parent="." instance=ExtResource("16_4ek7c")]
+[node name="GhostEnemy5" parent="Environment" instance=ExtResource("16_4ek7c")]
 position = Vector2(96, -368)
 
-[node name="GhostEnemy6" parent="." instance=ExtResource("16_4ek7c")]
+[node name="GhostEnemy6" parent="Environment" instance=ExtResource("16_4ek7c")]
 position = Vector2(112, -448)
 
-[node name="bEnemy5" parent="." instance=ExtResource("13_5ap41")]
+[node name="bEnemy5" parent="Environment" instance=ExtResource("13_5ap41")]
 position = Vector2(144, -512)
 
-[node name="bEnemy6" parent="." instance=ExtResource("13_5ap41")]
+[node name="bEnemy6" parent="Environment" instance=ExtResource("13_5ap41")]
 position = Vector2(144, -560)
 
-[node name="bEnemy7" parent="." instance=ExtResource("13_5ap41")]
+[node name="bEnemy7" parent="Environment" instance=ExtResource("13_5ap41")]
 position = Vector2(112, -592)
 
-[node name="bEnemy8" parent="." instance=ExtResource("13_5ap41")]
+[node name="bEnemy8" parent="Environment" instance=ExtResource("13_5ap41")]
 position = Vector2(144, -672)
 
-[node name="GhostEnemy7" parent="." instance=ExtResource("16_4ek7c")]
+[node name="GhostEnemy7" parent="Environment" instance=ExtResource("16_4ek7c")]
 position = Vector2(112, -688)
 
-[node name="GhostEnemy8" parent="." instance=ExtResource("16_4ek7c")]
+[node name="GhostEnemy8" parent="Environment" instance=ExtResource("16_4ek7c")]
 position = Vector2(128, -656)
 
-[node name="GhostEnemy9" parent="." instance=ExtResource("16_4ek7c")]
+[node name="GhostEnemy9" parent="Environment" instance=ExtResource("16_4ek7c")]
 position = Vector2(128, 16)
 
-[connection signal="area_entered" from="Environment/Goal" to="Environment/Goal" method="_on_area_entered"]
+[node name="Goal" parent="Environment" instance=ExtResource("13_v2rps")]
+position = Vector2(0, -736)
+next_level = ExtResource("14_idir2")

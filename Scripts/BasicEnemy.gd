@@ -11,11 +11,13 @@ class_name BasicEnemy
 @onready var area_hitbox = $HitBox
 @onready var collision_ray := $CollisionRay
 @onready var animation_player = $AnimationPlayer
+
+@export var projectile:PackedScene
 var timer
 var tween
 var direction = Vector2(-1, -1)
 var target_position = Vector2.ZERO
-
+var i = 0
 func _ready() -> void:
 	area_hitbox.damage = damage
 
@@ -25,17 +27,35 @@ func _ready() -> void:
 		"SIDE":
 			side_state()
 		"SHOOT":
-			pass
+			shoot_state()
 		"CICLE":
-			pass
+			cicle_state()
 func side_state():
 	await get_tree().create_timer(2).timeout
 				
-	print("123")
 	direction.y = 0
 	direction.x = -direction.x
 	move()
+	side_state()
+func shoot_state():
+	var new_p = projectile.instantiate()
+	await get_tree().physics_frame
+	new_p.global_position = global_position
+	owner.add_child(new_p)
 
+	await get_tree().create_timer(2).timeout
+	shoot_state()
+func cicle_state():
+	await get_tree().create_timer(2).timeout
+	var move = [Vector2(-1, 0), Vector2(0, 1), Vector2(1, 0), Vector2(0, -1)]
+
+	direction = move[i]
+	i += 1
+	move()
+	if i > 3:
+		i = 0
+	
+	cicle_state()
 	
 func take_damage(damage_amount):
 	currect_health -= damage_amount
@@ -50,7 +70,8 @@ func dealth():
 func move():
 	if tween != null:
 		return
-
+	if check_direction(direction) == false:
+		return
 	print("____")
 	target_position = global_position + direction * 16
 	var tween = create_tween()
@@ -64,7 +85,7 @@ func _physics_process(delta: float) -> void:
 	pass
 
 func check_direction(direction):
-	collision_ray.target_position.x = direction * 16
+	collision_ray.target_position = direction * 16
 	collision_ray.force_raycast_update()
 	if collision_ray.is_colliding():
 		return false

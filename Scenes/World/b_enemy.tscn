@@ -1,6 +1,7 @@
-[gd_scene load_steps=15 format=3 uid="uid://bkyb57xxntmyw"]
+[gd_scene load_steps=16 format=3 uid="uid://bkyb57xxntmyw"]
 
 [ext_resource type="Script" path="res://Scripts/BasicEnemy.gd" id="1_sc3dj"]
+[ext_resource type="PackedScene" uid="uid://k6nr85vs085r" path="res://Scenes/World/enemy_energyball_projectile.tscn" id="2_e06f0"]
 [ext_resource type="Texture2D" uid="uid://bjgh0maauboh8" path="res://Sprites/Enemies/skull_bad.png" id="2_qfycs"]
 [ext_resource type="Script" path="res://Scripts/EnemyHitbox.gd" id="3_jw411"]
 
@@ -123,8 +124,9 @@ _data = {
 }
 
 [node name="bEnemy" type="CharacterBody2D"]
-collision_layer = 0
 script = ExtResource("1_sc3dj")
+ai_type = "SHOOT"
+projectile = ExtResource("2_e06f0")
 metadata/_edit_group_ = true
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]

@@ -33,7 +33,7 @@ _data = {
 size = Vector2(12, 7)
 
 [node name="Vase" type="Area2D"]
-collision_layer = 16
+collision_layer = 17
 collision_mask = 2
 script = ExtResource("1_o05hn")
 item_dropped = Array[PackedScene]([ExtResource("2_x8fdc")])

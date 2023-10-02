@@ -40,6 +40,8 @@ animations = [{
 }]
 
 [node name="SpiderEnemy" instance=ExtResource("1_46rh7")]
+position = Vector2(16, 0)
+ai_type = "CICLE"
 
 [node name="Sprite2D" parent="." index="1"]
 sprite_frames = SubResource("SpriteFrames_hgk31")

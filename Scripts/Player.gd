@@ -12,11 +12,13 @@ signal health_changed
 
 @onready var sword_animation_player:AnimationPlayer = $SwordHitBox/AnimationPlayer
 @onready var animation_player:AnimationPlayer = $AnimationPlayer
+@onready var effect_player:AnimationPlayer = $Effects
 @onready var sword:Area2D = $SwordHitBox
 @onready var player_center = $PlayerCenter
 @onready var hurt_box:Area2D = $HurtBox
 
 const tile_size = 16
+var inv = false
 var target_position = Vector2.ZERO
 var tween: Tween
 var is_moving = false
@@ -189,9 +191,17 @@ func _on_hurtbox_area_entered(area: Area2D) -> void:
 			currect_state = states.GOAL
 
 func take_damage(damage_amount):
+	if inv == true:
+		return
 	currect_health -= damage_amount
+	
 	if currect_health <= 0:
 		death()
+		return
+	inv = true
+	effect_player.play("Blink")
+	await effect_player.animation_finished
+	inv = false
 func death():
 	currect_state = states.DIED
 	Utilities.stop_camera()

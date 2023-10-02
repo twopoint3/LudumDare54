@@ -8,7 +8,7 @@ size = Vector2(10, 14.875)
 
 [node name="SwordProjectile" type="Area2D"]
 collision_layer = 2
-collision_mask = 16
+collision_mask = 17
 script = ExtResource("1_gknyb")
 metadata/_edit_group_ = true
 

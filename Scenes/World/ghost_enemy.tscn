@@ -40,6 +40,7 @@ animations = [{
 }]
 
 [node name="GhostEnemy" instance=ExtResource("1_5euin")]
+collision_layer = 0
 ai_type = "SIDE"
 
 [node name="Sprite2D" parent="." index="1"]
