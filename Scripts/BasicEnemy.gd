@@ -15,6 +15,7 @@ class_name BasicEnemy
 @export var projectile:PackedScene
 var timer
 var tween
+var is_died := false
 var direction = Vector2(-1, -1)
 var target_position = Vector2.ZERO
 var i = 0
@@ -38,6 +39,8 @@ func side_state():
 	move()
 	side_state()
 func shoot_state():
+	if is_died == true:
+		return
 	var new_p = projectile.instantiate()
 	await get_tree().physics_frame
 	new_p.global_position = global_position
@@ -64,6 +67,7 @@ func take_damage(damage_amount):
 		dealth()
 func dealth():
 	Globals.score += enemyScore
+	is_died = true
 	animation_player.play("Death")
 	await animation_player.animation_finished
 	queue_free()
