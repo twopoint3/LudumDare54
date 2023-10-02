@@ -1,4 +1,4 @@
-[gd_scene load_steps=15 format=3 uid="uid://bbdimvx4snk3m"]
+[gd_scene load_steps=17 format=3 uid="uid://bbdimvx4snk3m"]
 
 [ext_resource type="Script" path="res://Scripts/LevelController.gd" id="1_7uuy0"]
 [ext_resource type="PackedScene" uid="uid://b3p6imdx57ro6" path="res://Scenes/hud.tscn" id="2_vxtxe"]
@@ -14,6 +14,8 @@
 [ext_resource type="PackedScene" uid="uid://dkmpraren5bdv" path="res://Scenes/World/wall_spike_right.tscn" id="14_2u51c"]
 [ext_resource type="PackedScene" uid="uid://bdsh4a24duh7h" path="res://Scenes/World/sheild_enemy.tscn" id="15_nu5dw"]
 [ext_resource type="PackedScene" uid="uid://k6nr85vs085r" path="res://Scenes/World/enemy_energyball_projectile.tscn" id="15_uawp4"]
+[ext_resource type="PackedScene" uid="uid://bkyb57xxntmyw" path="res://Scenes/World/b_enemy.tscn" id="15_vka7x"]
+[ext_resource type="PackedScene" uid="uid://bfb5v4ehh5cn0" path="res://Scenes/World/ghost_enemy.tscn" id="16_snyuq"]
 
 [node name="Level3" type="Node2D"]
 script = ExtResource("1_7uuy0")
@@ -275,5 +277,41 @@ speed = 60
 [node name="EnemyEnergyBallProjectile22" parent="." instance=ExtResource("15_uawp4")]
 position = Vector2(144, -784)
 speed = 60
+
+[node name="SpiderEnemy" parent="." instance=ExtResource("8_c847a")]
+position = Vector2(128, -432)
+
+[node name="SpiderEnemy10" parent="." instance=ExtResource("8_c847a")]
+position = Vector2(128, -512)
+
+[node name="SpiderEnemy12" parent="." instance=ExtResource("8_c847a")]
+position = Vector2(144, -624)
+
+[node name="SpiderEnemy13" parent="." instance=ExtResource("8_c847a")]
+position = Vector2(112, -672)
+
+[node name="PumpkinEnemy2" parent="." instance=ExtResource("12_4hv5v")]
+position = Vector2(144, -720)
+
+[node name="PumpkinEnemy3" parent="." instance=ExtResource("12_4hv5v")]
+position = Vector2(128, -720)
+
+[node name="PumpkinEnemy4" parent="." instance=ExtResource("12_4hv5v")]
+position = Vector2(112, -720)
+
+[node name="PumpkinEnemy5" parent="." instance=ExtResource("12_4hv5v")]
+position = Vector2(96, -720)
+
+[node name="bEnemy" parent="." instance=ExtResource("15_vka7x")]
+position = Vector2(128, -704)
+
+[node name="bEnemy2" parent="." instance=ExtResource("15_vka7x")]
+position = Vector2(112, -704)
+
+[node name="GhostEnemy" parent="." instance=ExtResource("16_snyuq")]
+position = Vector2(112, -640)
+
+[node name="GhostEnemy2" parent="." instance=ExtResource("16_snyuq")]
+position = Vector2(128, -656)
 
 [editable path="Environment/Goal"]
