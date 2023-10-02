@@ -6,6 +6,7 @@ extends Area2D
 @export var score = 5
 @onready var animation_player = $AnimationPlayer
 @onready var pot_break = $PotBreak
+@onready var collision = $CollisionShape2D
 
 func _on_area_entered(area:Area2D) -> void:
 	health -= area.damage
@@ -30,6 +31,7 @@ func chance():
 		return false
 
 func death():
+	collision.disabled = true
 	Globals.score += score
 	animation_player.play("Death")
 	await animation_player.animation_finished
