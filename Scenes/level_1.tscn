@@ -34,7 +34,7 @@ layer_1/z_index = 0
 layer_1/tile_data = PackedInt32Array()
 
 [node name="Camera2D" type="Camera2D" parent="Environment"]
-position = Vector2(112, -448)
+position = Vector2(112, 80)
 limit_left = 0
 limit_right = 256
 limit_bottom = 144
@@ -44,7 +44,7 @@ speed = 0
 [node name="Obstacles" type="Node2D" parent="Environment"]
 
 [node name="Player" parent="Environment" instance=ExtResource("7_mgv0o")]
-position = Vector2(112, -408)
+position = Vector2(112, 120)
 
 [node name="Goal" parent="Environment" instance=ExtResource("14_wiv0n")]
 position = Vector2(0, -592)
