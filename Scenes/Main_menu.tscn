@@ -1,4 +1,4 @@
-[gd_scene load_steps=16 format=3 uid="uid://bql6fam0suwjy"]
+[gd_scene load_steps=22 format=3 uid="uid://bql6fam0suwjy"]
 
 [ext_resource type="Script" path="res://Scripts/MainMenu.gd" id="1_ylo06"]
 [ext_resource type="Texture2D" uid="uid://qotydo0apleq" path="res://Sprites/HUD/TransitionBoxpng.png" id="2_2i874"]
@@ -7,6 +7,7 @@
 [ext_resource type="Texture2D" uid="uid://dqofct6me01n2" path="res://Sprites/MainMenu/sleepy_guy.png" id="5_201yy"]
 [ext_resource type="Texture2D" uid="uid://defotw631h0un" path="res://Sprites/HUD/WhiteBox.png" id="6_3drh6"]
 [ext_resource type="Theme" uid="uid://rshu4syu4wem" path="res://hud.tres" id="6_estm4"]
+[ext_resource type="Texture2D" uid="uid://ksguxfd87afa" path="res://Sprites/MainMenu/stars.png" id="8_r6i0w"]
 
 [sub_resource type="Animation" id="Animation_fo2k1"]
 resource_name = "Opening"
@@ -56,6 +57,18 @@ tracks/3/interp = 1
 tracks/3/loop_wrap = true
 tracks/3/keys = {
 "times": PackedFloat32Array(0, 9.8),
+"transitions": PackedFloat32Array(1, 1),
+"update": 1,
+"values": [false, true]
+}
+tracks/4/type = "value"
+tracks/4/imported = false
+tracks/4/enabled = true
+tracks/4/path = NodePath("Label4:visible")
+tracks/4/interp = 1
+tracks/4/loop_wrap = true
+tracks/4/keys = {
+"times": PackedFloat32Array(0.1, 9.85),
 "transitions": PackedFloat32Array(1, 1),
 "update": 1,
 "values": [false, true]
@@ -111,6 +124,18 @@ tracks/3/keys = {
 "update": 1,
 "values": [true]
 }
+tracks/4/type = "value"
+tracks/4/imported = false
+tracks/4/enabled = true
+tracks/4/path = NodePath("Label4:visible")
+tracks/4/interp = 1
+tracks/4/loop_wrap = true
+tracks/4/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [true]
+}
 
 [sub_resource type="AnimationLibrary" id="AnimationLibrary_pcx6t"]
 _data = {
@@ -152,6 +177,42 @@ animations = [{
 "loop": true,
 "name": &"default",
 "speed": 4.0
+}]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_yaa5p"]
+atlas = ExtResource("8_r6i0w")
+region = Rect2(0, 0, 64, 64)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_si1op"]
+atlas = ExtResource("8_r6i0w")
+region = Rect2(64, 0, 64, 64)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_wyqnp"]
+atlas = ExtResource("8_r6i0w")
+region = Rect2(128, 0, 64, 64)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_jv0qt"]
+atlas = ExtResource("8_r6i0w")
+region = Rect2(192, 0, 64, 64)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_3jshp"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_yaa5p")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_si1op")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_wyqnp")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_jv0qt")
+}],
+"loop": true,
+"name": &"default",
+"speed": 5.0
 }]
 
 [node name="MainMenu" type="Control"]
@@ -202,6 +263,7 @@ position = Vector2(128, -96)
 texture = ExtResource("4_36s4f")
 
 [node name="Logo" type="Sprite2D" parent="."]
+z_index = 1
 position = Vector2(126, -262)
 texture = ExtResource("3_4ab33")
 
@@ -215,6 +277,7 @@ frame_progress = 0.400525
 position = Vector2(128, 72)
 
 [node name="Label2" type="Label" parent="."]
+z_index = 1
 layout_mode = 1
 anchors_preset = 8
 anchor_left = 0.5
@@ -232,9 +295,108 @@ text = "START"
 horizontal_alignment = 1
 vertical_alignment = 1
 
+[node name="Label4" type="Label" parent="."]
+z_index = 1
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -40.0
+offset_top = -271.0
+offset_right = 39.0
+offset_bottom = -236.0
+grow_horizontal = 2
+grow_vertical = 2
+theme = ExtResource("6_estm4")
+text = "A game by JumpyWhale"
+horizontal_alignment = 1
+vertical_alignment = 1
+
 [node name="Whilebox" type="Sprite2D" parent="."]
 modulate = Color(1, 1, 1, 0)
 position = Vector2(128, -266.5)
 scale = Vector2(1, 1.28472)
 texture = ExtResource("6_3drh6")
 metadata/_edit_lock_ = true
+
+[node name="stars" type="AnimatedSprite2D" parent="."]
+texture_repeat = 2
+position = Vector2(95, -57)
+sprite_frames = SubResource("SpriteFrames_3jshp")
+autoplay = "default"
+frame_progress = 0.108923
+
+[node name="stars5" type="AnimatedSprite2D" parent="."]
+texture_repeat = 2
+position = Vector2(95, -133)
+sprite_frames = SubResource("SpriteFrames_3jshp")
+autoplay = "default"
+frame_progress = 0.983157
+
+[node name="stars6" type="AnimatedSprite2D" parent="."]
+texture_repeat = 2
+position = Vector2(176, -128)
+scale = Vector2(1.10938, 1.10938)
+sprite_frames = SubResource("SpriteFrames_3jshp")
+autoplay = "default"
+frame_progress = 0.983157
+
+[node name="stars9" type="AnimatedSprite2D" parent="."]
+texture_repeat = 2
+position = Vector2(78, -192)
+sprite_frames = SubResource("SpriteFrames_3jshp")
+autoplay = "default"
+frame_progress = 0.983157
+
+[node name="stars10" type="AnimatedSprite2D" parent="."]
+texture_repeat = 2
+position = Vector2(154.5, -193.5)
+scale = Vector2(1.26562, 1.23438)
+sprite_frames = SubResource("SpriteFrames_3jshp")
+autoplay = "default"
+frame_progress = 0.983157
+
+[node name="stars13" type="AnimatedSprite2D" parent="."]
+texture_repeat = 2
+position = Vector2(77, -258)
+sprite_frames = SubResource("SpriteFrames_3jshp")
+autoplay = "default"
+frame_progress = 0.983157
+
+[node name="stars14" type="AnimatedSprite2D" parent="."]
+texture_repeat = 2
+position = Vector2(179, -255)
+sprite_frames = SubResource("SpriteFrames_3jshp")
+autoplay = "default"
+frame_progress = 0.983157
+
+[node name="stars17" type="AnimatedSprite2D" parent="."]
+texture_repeat = 2
+position = Vector2(77, -320)
+sprite_frames = SubResource("SpriteFrames_3jshp")
+autoplay = "default"
+frame_progress = 0.983157
+
+[node name="stars18" type="AnimatedSprite2D" parent="."]
+texture_repeat = 2
+position = Vector2(147, -325)
+sprite_frames = SubResource("SpriteFrames_3jshp")
+autoplay = "default"
+frame_progress = 0.983157
+
+[node name="stars2" type="AnimatedSprite2D" parent="."]
+texture_repeat = 2
+position = Vector2(120, 18)
+sprite_frames = SubResource("SpriteFrames_3jshp")
+autoplay = "default"
+frame_progress = 0.790338
+
+[node name="stars3" type="AnimatedSprite2D" parent="."]
+texture_repeat = 2
+position = Vector2(151, -73)
+scale = Vector2(0.953125, 0.953125)
+sprite_frames = SubResource("SpriteFrames_3jshp")
+autoplay = "default"
+frame_progress = 0.790338

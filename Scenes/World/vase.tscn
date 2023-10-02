@@ -1,4 +1,4 @@
-[gd_scene load_steps=9 format=3 uid="uid://cge5h5gwevkk7"]
+[gd_scene load_steps=10 format=3 uid="uid://cge5h5gwevkk7"]
 
 [ext_resource type="Script" path="res://Scripts/Breakable.gd" id="1_o05hn"]
 [ext_resource type="PackedScene" uid="uid://dx11lmn8en8a3" path="res://Scenes/World/golden_bug.tscn" id="2_x8fdc"]
@@ -32,6 +32,9 @@ _data = {
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_qr6gx"]
 size = Vector2(12, 7)
 
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_itfht"]
+size = Vector2(16, 16)
+
 [node name="Vase" type="Area2D"]
 collision_layer = 17
 collision_mask = 2
@@ -62,5 +65,11 @@ damage = 1
 position = Vector2(8, 9.5)
 shape = SubResource("RectangleShape2D_qr6gx")
 debug_color = Color(0.701961, 0, 0.0117647, 0.419608)
+
+[node name="StaticBody2D" type="StaticBody2D" parent="."]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="StaticBody2D"]
+position = Vector2(8, 8)
+shape = SubResource("RectangleShape2D_itfht")
 
 [connection signal="area_entered" from="." to="." method="_on_area_entered"]
