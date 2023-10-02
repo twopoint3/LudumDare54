@@ -1,7 +1,7 @@
 extends Camera2D
 
 @export var target = Node2D
-@export var speed = 25
+@export var speed = 20
 @export var starting_speed = speed
 var shake_strength = 0
 var tween:Tween

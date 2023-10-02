@@ -140,11 +140,9 @@ position = Vector2(128, -96)
 
 [node name="Vase4" parent="Environment" instance=ExtResource("8_pvrkv")]
 position = Vector2(128, -16)
-drop_chance = 0
 
 [node name="Vase5" parent="Environment" instance=ExtResource("8_pvrkv")]
 position = Vector2(96, 32)
-drop_chance = 0
 
 [node name="Vase6" parent="Environment" instance=ExtResource("8_pvrkv")]
 position = Vector2(96, -816)

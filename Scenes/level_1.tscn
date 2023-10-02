@@ -81,19 +81,15 @@ position = Vector2(128, -528)
 
 [node name="Vase2" parent="." instance=ExtResource("9_lw2g7")]
 position = Vector2(96, -256)
-drop_chance = 0
 
 [node name="Vase3" parent="." instance=ExtResource("10_w0y24")]
 position = Vector2(96, -272)
-drop_chance = 0
 
 [node name="Vase4" parent="." instance=ExtResource("9_lw2g7")]
 position = Vector2(128, -304)
-drop_chance = 0
 
 [node name="Vase5" parent="." instance=ExtResource("10_w0y24")]
 position = Vector2(128, -288)
-drop_chance = 0
 
 [node name="Control" type="Control" parent="."]
 layout_mode = 3

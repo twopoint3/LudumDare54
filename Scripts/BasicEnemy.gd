@@ -7,7 +7,7 @@ class_name BasicEnemy
 @export var move_wait_time = 3
 @export var enemyScore = 10
 @export_enum("NONE", "SIDE", "SHOOT", "CICLE") var ai_type := "NONE"
-
+@export var fire_speed = 2.5
 @onready var area_hitbox = $HitBox
 @onready var collision_ray := $CollisionRay
 @onready var animation_player = $AnimationPlayer
@@ -46,7 +46,7 @@ func shoot_state():
 	new_p.global_position = global_position
 	owner.add_child(new_p)
 
-	await get_tree().create_timer(2.5).timeout
+	await get_tree().create_timer(fire_speed).timeout
 	shoot_state()
 func cicle_state():
 	await get_tree().create_timer(2).timeout

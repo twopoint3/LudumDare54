@@ -1,0 +1,74 @@
+[gd_scene load_steps=8 format=3 uid="uid://doknoor6jvt7"]
+
+[ext_resource type="Script" path="res://Scripts/WallSpike.gd" id="1_mq6bl"]
+[ext_resource type="Script" path="res://Scripts/EnemyHitbox.gd" id="1_p8odl"]
+[ext_resource type="Texture2D" uid="uid://4bycve88g838" path="res://Sprites/Enemies/spike.png" id="2_mesk8"]
+
+[sub_resource type="Animation" id="Animation_8k0kd"]
+resource_name = "Start"
+length = 0.4
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Sprite2D:frame_coords")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.1, 0.2, 0.3),
+"transitions": PackedFloat32Array(1, 1, 1, 1),
+"update": 1,
+"values": [Vector2i(0, 0), Vector2i(1, 0), Vector2i(2, 0), Vector2i(3, 0)]
+}
+
+[sub_resource type="Animation" id="Animation_idegi"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Sprite2D:frame_coords")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [Vector2i(0, 0)]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_312j2"]
+_data = {
+"RESET": SubResource("Animation_idegi"),
+"Start": SubResource("Animation_8k0kd")
+}
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_1rlqg"]
+size = Vector2(16, 16)
+
+[node name="WallSpike" type="Node2D"]
+script = ExtResource("1_mq6bl")
+time_extended = 3
+intervals = 2
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="."]
+libraries = {
+"": SubResource("AnimationLibrary_312j2")
+}
+
+[node name="Area2D" type="Area2D" parent="."]
+script = ExtResource("1_p8odl")
+damage = 1
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Area2D"]
+position = Vector2(8, 8)
+shape = SubResource("RectangleShape2D_1rlqg")
+disabled = true
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+texture = ExtResource("2_mesk8")
+centered = false
+hframes = 4
+
+[node name="Timer" type="Timer" parent="."]
+one_shot = true
+
+[connection signal="timeout" from="Timer" to="." method="_on_timer_timeout"]

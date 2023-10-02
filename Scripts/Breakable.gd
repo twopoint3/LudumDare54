@@ -2,7 +2,7 @@ extends Area2D
 
 @export var health = 1
 @export var item_dropped:Array[PackedScene] = []
-@export var drop_chance = 1
+@export var drop_chance = 1.0
 
 @onready var animation_player = $AnimationPlayer
 
