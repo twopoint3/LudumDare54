@@ -1,4 +1,4 @@
-[gd_scene load_steps=18 format=3 uid="uid://n8t1jynx1kal"]
+[gd_scene load_steps=18 format=3 uid="uid://by683pkmtxdwe"]
 
 [ext_resource type="Script" path="res://Scripts/LevelController.gd" id="1_m7r8g"]
 [ext_resource type="PackedScene" uid="uid://b3p6imdx57ro6" path="res://Scenes/hud.tscn" id="2_145y2"]
@@ -10,13 +10,13 @@
 [ext_resource type="PackedScene" uid="uid://bfb5v4ehh5cn0" path="res://Scenes/World/ghost_enemy.tscn" id="8_137rn"]
 [ext_resource type="PackedScene" uid="uid://bkyb57xxntmyw" path="res://Scenes/World/b_enemy.tscn" id="9_qjm3p"]
 [ext_resource type="PackedScene" uid="uid://g1svyw1hb5ii" path="res://Scenes/World/vase2.tscn" id="10_3tf4k"]
-[ext_resource type="PackedScene" path="res://Scenes/World/eye_enemy.tscn" id="11_o1gi0"]
+[ext_resource type="PackedScene" uid="uid://beevpfp4pr65t" path="res://Scenes/World/eye_enemy.tscn" id="11_o1gi0"]
 [ext_resource type="PackedScene" uid="uid://bnimi4pul5hxj" path="res://Scenes/World/lazer_powerup.tscn" id="11_xykdy"]
 [ext_resource type="PackedScene" uid="uid://dhj463recr3y6" path="res://Scenes/World/spider_enemy.tscn" id="12_dov43"]
 [ext_resource type="PackedScene" uid="uid://2euemqco8saw" path="res://Scenes/World/pumpkin_enemy.tscn" id="12_qo0xs"]
 [ext_resource type="PackedScene" uid="uid://cge5h5gwevkk7" path="res://Scenes/World/vase.tscn" id="13_am4jk"]
-[ext_resource type="PackedScene" path="res://Scenes/World/wall_spike_right.tscn" id="14_e78pv"]
-[ext_resource type="PackedScene" path="res://Scenes/World/wall_spike_left.tscn" id="15_eqwdj"]
+[ext_resource type="PackedScene" uid="uid://dkmpraren5bdv" path="res://Scenes/World/wall_spike_right.tscn" id="14_e78pv"]
+[ext_resource type="PackedScene" uid="uid://doknoor6jvt7" path="res://Scenes/World/wall_spike_left.tscn" id="15_eqwdj"]
 
 [node name="Level3" type="Node2D"]
 script = ExtResource("1_m7r8g")
