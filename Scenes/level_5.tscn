@@ -276,4 +276,25 @@ speed = 40
 position = Vector2(144, -784)
 speed = 40
 
+[node name="PumpkinEnemy2" parent="." instance=ExtResource("12_4hv5v")]
+position = Vector2(128, -384)
+
+[node name="PumpkinEnemy3" parent="." instance=ExtResource("12_4hv5v")]
+position = Vector2(112, -464)
+
+[node name="PumpkinEnemy4" parent="." instance=ExtResource("12_4hv5v")]
+position = Vector2(112, -672)
+
+[node name="PumpkinEnemy5" parent="." instance=ExtResource("12_4hv5v")]
+position = Vector2(128, -672)
+
+[node name="PumpkinEnemy6" parent="." instance=ExtResource("12_4hv5v")]
+position = Vector2(96, -736)
+
+[node name="PumpkinEnemy7" parent="." instance=ExtResource("12_4hv5v")]
+position = Vector2(112, -736)
+
+[node name="PumpkinEnemy8" parent="." instance=ExtResource("12_4hv5v")]
+position = Vector2(112, -768)
+
 [editable path="Environment/Goal"]
