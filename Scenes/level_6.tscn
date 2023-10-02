@@ -187,12 +187,12 @@ position = Vector2(144, -656)
 
 [node name="WallSpikeLeft13" parent="." instance=ExtResource("8_n2ffg")]
 position = Vector2(96, -288)
-time_extended = 2
+time_extended = 1
 intervals = 2.5
 
 [node name="WallSpikeLeft14" parent="." instance=ExtResource("8_n2ffg")]
 position = Vector2(96, -304)
-time_extended = 2
+time_extended = 1
 intervals = 2.5
 
 [node name="EnemyEnergyBallProjectile2" parent="." instance=ExtResource("13_noqa4")]
